@@ -13,7 +13,7 @@
     <tbody>
     {{#each model as |transaction|}}
         <tr>
-            <td>{{transaction.date}}</td>
+            <td>{{format-date transaction.date 'DD/MM/YYYY'}}</td>
             <td>{{transaction.description}}</td>
             <td>{{format-amount transaction.amount_cents}}</td>
             <td>{{transaction.currency}}</td>
