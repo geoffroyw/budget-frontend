@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('transaction', 'Unit | Model | transaction', {
+moduleForModel('bank-account', 'Unit | Model | bank account', {
   // Specify the other units that are required for this test.
-  needs: ['model:payment-mean', 'model:bank-account']
+  needs: ['model:transaction']
 });
 
 test('it exists', function(assert) {

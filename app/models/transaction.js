@@ -10,6 +10,7 @@ export default DS.Model.extend({
   updated_at: DS.attr('date', {readOnly: true}),
   type: DS.attr('string'),
   payment_mean: DS.belongsTo('payment-mean'),
+  bank_account: DS.belongsTo('bank-account'),
 
 
   is_income: Ember.computed.equal('type', 'INCOME'),
