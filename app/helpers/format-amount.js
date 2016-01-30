@@ -1,25 +1,17 @@
 import Ember from 'ember';
 
+/* global accounting */
+
 export function formatAmount(params/*, hash*/) {
 
-  let amount_cent = "" + params[0];
+  let amount_cent = params[0];
 
-  if (amount_cent !== undefined) {
-    if (amount_cent.length > 2) {
-      amount_cent = amount_cent.substring(0, amount_cent.length - 2) + "." + amount_cent.substring(amount_cent.length - 2);
-    }
+  let currency = params[1] === undefined ? "EUR" : params[1];
 
+  let decimal_amount = amount_cent / 100;
 
-    if (amount_cent.length === 2) {
-      amount_cent = "0." + amount_cent;
-    }
+  return accounting.formatMoney(decimal_amount, {"symbol": currency, format: "%v %s"});
 
-    if (amount_cent.length === 1) {
-      amount_cent = "0.0" + amount_cent;
-    }
-  }
-
-  return amount_cent;
 }
 
 export default Ember.Helper.helper(formatAmount);
