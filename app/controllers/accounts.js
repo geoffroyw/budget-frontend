@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
 
     edit() {
       "use strict";
-      this.set('isEditing', true)
+      this.set('isEditing', true);
     },
 
     cancel() {
