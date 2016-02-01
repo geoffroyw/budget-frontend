@@ -12,11 +12,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                {{#link-to 'index' tagName='li' href=false}}
+                    {{#link-to 'index'}}Home{{/link-to}}
+                {{/link-to}}
                 <li><a href="#">Reports</a></li>
-                <li>
+                {{#link-to 'accounts' tagName='li' href=false}}
                     {{#link-to 'accounts'}}Bank Accounts{{/link-to}}
-                </li>
+                {{/link-to}}
                 <li><a href="#">Means of Payment</a></li>
             </ul>
             <div class="navbar-right">
