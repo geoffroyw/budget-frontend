@@ -11,9 +11,16 @@ export default DS.Model.extend({
   type: DS.attr('string'),
   payment_mean: DS.belongsTo('payment-mean'),
   bank_account: DS.belongsTo('bank-account'),
+  isEditing: DS.attr('boolean', {defaultValue: false, transient: true}),
+  amount: DS.attr('number', {transient: true}),
 
 
-  is_income: Ember.computed.equal('type', 'INCOME'),
-  is_expense: Ember.computed.equal('type', 'EXPENSE')
+  isIncome: Ember.computed.equal('type', 'INCOME'),
+  isExpense: Ember.computed.equal('type', 'EXPENSE'),
+
+  amountChanged: Ember.observer('amount', function () {
+    "use strict";
+    this.set('amount_cents', parseFloat(this.get('amount')) * 100);
+  })
 
 });

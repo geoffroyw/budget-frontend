@@ -1,27 +1,27 @@
-<h2 id="title">My recent transactions</h2>
+<div class="row">
+    <div class="col-md-12">
+        <h2 id="title">My recent transactions</h2>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Amount</th>
-        <th>Currency</th>
-        <th>Mean of Payment</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each model as |transaction|}}
-        <tr>
-            <td>{{format-date transaction.date 'DD/MM/YYYY'}}</td>
-            <td>{{transaction.description}}</td>
-            <td>{{format-amount transaction.amount_cents transaction.currency}}</td>
-            <td>{{transaction.currency}}</td>
-            <td>TODO</td>
-        </tr>
-    {{/each}}
-    </tbody>
-</table>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Mean of Payment</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each model as |transaction|}}
+                {{editable-transaction-row model=transaction}}
+            {{/each}}
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary" {{action 'newTransaction'}}>Add transaction</button>
+    </div>
+</div>
 
 
 {{outlet}}
