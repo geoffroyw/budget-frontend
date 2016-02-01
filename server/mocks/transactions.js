@@ -110,5 +110,5 @@ module.exports = function (app) {
   // this mock uncommenting the following line:
   //
   //app.use('/api/transaction', require('body-parser').json());
-  app.use('/transactions', transactionRouter);
+  app.use('/api/transactions', transactionRouter);
 };

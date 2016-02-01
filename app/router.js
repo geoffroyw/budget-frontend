@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('accounts', {path: '/accounts'});
+  this.route('payment-means');
 });
 
 export default Router;

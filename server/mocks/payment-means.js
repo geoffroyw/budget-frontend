@@ -1,34 +1,34 @@
 /*jshint node:true*/
-module.exports = function (app) {
+module.exports = function(app) {
   var express = require('express');
-  var bankAccountsRouter = express.Router();
+  var paymentMeanRouter = express.Router();
 
   var initialData = {
     "data": [{
-      "type": "BankAccounts",
+      "type": "PaymentMeans",
       "id": "1",
       "attributes": {
-        "name": "Account 1",
+        "name": "Credit Card 1",
         "currency": "EUR",
         "created-at": new Date(),
         "updated-at": new Date()
       }
     },
       {
-        "type": "BankAccounts",
+        "type": "PaymentMeans",
         "id": "2",
         "attributes": {
-          "name": "Account 2",
+          "name": "Credit Card 2",
           "currency": "EUR",
           "created-at": new Date(),
           "updated-at": new Date()
         }
       },
       {
-        "type": "BankAccounts",
+        "type": "PaymentMeans",
         "id": "3",
         "attributes": {
-          "name": "Account 3",
+          "name": "Credit Card 3",
           "currency": "USD",
           "created-at": new Date(),
           "updated-at": new Date()
@@ -36,32 +36,31 @@ module.exports = function (app) {
       }]
   };
 
-
-  bankAccountsRouter.get('/', function (req, res) {
+  paymentMeanRouter.get('/', function(req, res) {
     res.send(initialData);
   });
 
-  bankAccountsRouter.post('/', function (req, res) {
+  paymentMeanRouter.post('/', function(req, res) {
     res.status(201).end();
   });
 
-  bankAccountsRouter.get('/:id', function (req, res) {
+  paymentMeanRouter.get('/:id', function(req, res) {
     res.send({
-      'bank-accounts': {
+      'payment-mean': {
         id: req.params.id
       }
     });
   });
 
-  bankAccountsRouter.put('/:id', function (req, res) {
+  paymentMeanRouter.put('/:id', function(req, res) {
     res.send({
-      'bank-accounts': {
+      'payment-mean': {
         id: req.params.id
       }
     });
   });
 
-  bankAccountsRouter.delete('/:id', function (req, res) {
+  paymentMeanRouter.delete('/:id', function(req, res) {
     res.status(204).end();
   });
 
@@ -74,6 +73,6 @@ module.exports = function (app) {
   // After installing, you need to `use` the body-parser for
   // this mock uncommenting the following line:
   //
-  //app.use('/api/bank-accounts', require('body-parser').json());
-  app.use('/api/bank-accounts', bankAccountsRouter);
+  //app.use('/api/payment_mean', require('body-parser').json());
+  app.use('/api/payment-means', paymentMeanRouter);
 };
