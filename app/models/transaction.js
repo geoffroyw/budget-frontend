@@ -13,6 +13,7 @@ export default DS.Model.extend({
   bank_account: DS.belongsTo('bank-account'),
   isEditing: DS.attr('boolean', {defaultValue: false, transient: true}),
   amount: DS.attr('number', {transient: true}),
+  is_confirmed: DS.attr('boolean', {defaultValue: false}),
 
 
   isIncome: Ember.computed.equal('type', 'INCOME'),

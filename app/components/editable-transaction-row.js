@@ -2,10 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'tr',
-  classNameBindings: ['isIncome:text-success', 'isExpense:text-danger'],
-
-  isExpense: Ember.computed.not('model.isIncome'),
-  isIncome: Ember.computed.not('model.isExpense'),
+  classNameBindings: ['model.isIncome:text-success', 'model.isExpense:text-danger', 'model.is_confirmed:info'],
 
   actions: {
     edit(model) {

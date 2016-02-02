@@ -16,7 +16,8 @@ module.exports = function (app) {
         "currency": "EUR",
         "created-at": new Date(),
         "updated-at": new Date(),
-        "type": "INCOME"
+        "type": "INCOME",
+        "is-confirmed": true
       }
     },
       {
@@ -29,7 +30,8 @@ module.exports = function (app) {
           "currency": "EUR",
           "created-at": new Date(),
           "updated-at": new Date(),
-          "type": "EXPENSE"
+          "type": "EXPENSE",
+          "is-confirmed": false
         }
       },
       {
@@ -42,7 +44,8 @@ module.exports = function (app) {
           "currency": "EUR",
           "created-at": new Date(),
           "updated-at": new Date(),
-          "type": "INCOME"
+          "type": "INCOME",
+          "is-confirmed": true
         }
       },
       {
@@ -55,7 +58,8 @@ module.exports = function (app) {
           "currency": "EUR",
           "created-at": new Date(),
           "updated-at": new Date(),
-          "type": "INCOME"
+          "type": "INCOME",
+          "is-confirmed": false
         }
       },
       {
@@ -68,7 +72,8 @@ module.exports = function (app) {
           "currency": "USD",
           "created-at": new Date(),
           "updated-at": new Date(),
-          "type": "EXPENSE"
+          "type": "EXPENSE",
+          "is-confirmed": true
         }
       }]
   };
