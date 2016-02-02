@@ -2,23 +2,25 @@
     <div class="col-md-12">
         <h2 id="title">My recent transactions</h2>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Currency</th>
-                <th>Mean of Payment</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each model.transactions as |transaction|}}
-                {{editable-transaction-row model=transaction paymentMeans=model.paymentMeans}}
-            {{/each}}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Mean of Payment</th>
+                    <th>Bank Account</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each model.transactions as |transaction|}}
+                    {{editable-transaction-row model=transaction paymentMeans=model.paymentMeans bankAccounts=model.bankAccounts}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
 
         <button class="btn btn-primary" {{action 'newTransaction'}}>Add transaction</button>
     </div>

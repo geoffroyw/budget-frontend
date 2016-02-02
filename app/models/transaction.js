@@ -8,7 +8,7 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   created_at: DS.attr('date', {readOnly: true}),
   updated_at: DS.attr('date', {readOnly: true}),
-  type: DS.attr('string'),
+  type: DS.attr('string', {defaultValue: 'INCOME'}),
   payment_mean: DS.belongsTo('payment-mean'),
   bank_account: DS.belongsTo('bank-account'),
   isEditing: DS.attr('boolean', {defaultValue: false, transient: true}),
