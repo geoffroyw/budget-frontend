@@ -1,15 +1,11 @@
-<td class="col-md-2">
+<td class="col-md-1">
     {{#if model.isEditing}}
-        <div class="row">
-            <div class="col-xs-8">
-                {{bootstrap-datepicker value=model.date class='form-control'}}
-            </div>
-        </div>
+        {{bootstrap-datepicker value=model.date class='form-control'}}
     {{else}}
         {{format-date model.date 'DD/MM/YYYY'}}
     {{/if}}
 </td>
-<td class="col-md-3">
+<td class="col-md-2">
     {{#if model.isEditing}}
         {{input type='text' value=model.description class='form-control'}}
     {{else}}
@@ -33,7 +29,7 @@
         {{format-amount model.amount_cents model.currency}}
     {{/if}}
 </td>
-<td class="col-md-2">
+<td class="col-md-1">
     {{#if model.isEditing}}
         {{ember-selectize
         content=paymentMeans
@@ -43,7 +39,7 @@
         {{model.payment_mean.name}}
     {{/if}}
 </td>
-<td class="col-md-2">
+<td class="col-md-1">
     {{#if model.isEditing}}
         {{ember-selectize
         content=bankAccounts
@@ -52,6 +48,9 @@
     {{else}}
         {{model.bank_account.name}}
     {{/if}}
+</td>
+<td class="col-md-2">
+ TODO
 </td>
 <td class="col-md-1">
     {{input type='checkbox' checked=model.is_confirmed}}
