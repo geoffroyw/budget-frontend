@@ -1,6 +1,6 @@
 <td>
     {{#if model.isEditing}}
-        {{input type='date' value=model.date class='form-control '}}
+        {{bootstrap-datepicker value=model.date class='form-control'}}
     {{else}}
         {{format-date model.date 'DD/MM/YYYY'}}
     {{/if}}
@@ -28,10 +28,22 @@
 </td>
 <td>
     {{#if model.isEditing}}
-        {{my-select content=model.currency action=(action (mut model.payment_mean))}}
+        {{ember-selectize
+        content=paymentMeans
+        optionLabelPath='content.name'
+        selection=model.payment_mean}}
     {{else}}
         {{model.payment_mean.name}}
     {{/if}}
 </td>
+<td>
+    {{#if model.isEditing}}
+        <button class="btn btn-success btn-sm" {{action 'save' model}}><i class="glyphicon glyphicon-ok"></i></button>
+        <button class="btn btn-default btn-sm" {{action 'cancelEdit' model}}><i class="glyphicon glyphicon-remove"></i>
+        </button>
+    {{else}}
+        <button class="btn btn-primary btn-sm" {{action 'edit' model}}><i class="glyphicon glyphicon-edit"></i></button>
+    {{/if}}
 
+</td>
 {{yield}}

@@ -10,11 +10,12 @@
                 <th>Amount</th>
                 <th>Currency</th>
                 <th>Mean of Payment</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            {{#each model as |transaction|}}
-                {{editable-transaction-row model=transaction}}
+            {{#each model.transactions as |transaction|}}
+                {{editable-transaction-row model=transaction paymentMeans=model.paymentMeans}}
             {{/each}}
             </tbody>
         </table>

@@ -1,4 +1,6 @@
 /*jshint node:true*/
+
+"use strict";
 module.exports = function (app) {
   var express = require('express');
   var transactionRouter = express.Router();
@@ -81,6 +83,7 @@ module.exports = function (app) {
   });
 
   transactionRouter.get('/:id', function (req, res) {
+    "use strict";
     res.send({
       'transaction': {
         id: req.params.id
@@ -88,12 +91,15 @@ module.exports = function (app) {
     });
   });
 
-  transactionRouter.put('/:id', function (req, res) {
-    res.send({
-      'transaction': {
-        id: req.params.id
-      }
-    });
+  transactionRouter.patch('/:id', function (req, res) {
+    "use strict";
+    let id = req.params.id;
+    initialData.data[id - 1]['attributes']['date'] = req.body.data.attributes['date'];
+    initialData.data[id - 1]['attributes']['description'] = req.body.data.attributes['description'];
+    initialData.data[id - 1]['attributes']['amount-cents'] = req.body.data.attributes['amount-cents'];
+    initialData.data[id - 1]['attributes']['currency'] = req.body.data.attributes['currency'];
+    initialData.data[id - 1]['attributes']['type'] = req.body.data.attributes['type'];
+    res.send({data: initialData.data[id - 1]});
   });
 
   transactionRouter.delete('/:id', function (req, res) {
@@ -109,6 +115,6 @@ module.exports = function (app) {
   // After installing, you need to `use` the body-parser for
   // this mock uncommenting the following line:
   //
-  //app.use('/api/transaction', require('body-parser').json());
+  app.use('/api/transactions', require('body-parser').json({type: 'application/vnd.api+json'}));
   app.use('/api/transactions', transactionRouter);
 };
