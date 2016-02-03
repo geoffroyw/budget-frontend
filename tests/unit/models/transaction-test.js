@@ -2,17 +2,17 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('transaction', 'Unit | Model | transaction', {
   // Specify the other units that are required for this test.
-  needs: ['model:payment-mean', 'model:bank-account']
+  needs: ['model:payment-mean', 'model:bank-account', 'model:category']
 });
 
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let model = this.subject();
   // let store = this.store();
   assert.ok(!!model);
 });
 
 
-test('is income is true if type === INCOME', function(assert) {
+test('is income is true if type === INCOME', function (assert) {
   "use strict";
   let model = this.subject({type: 'INCOME'});
   // let store = this.store();
@@ -20,8 +20,7 @@ test('is income is true if type === INCOME', function(assert) {
 });
 
 
-
-test('is income is false if type !== INCOME', function(assert) {
+test('is income is false if type !== INCOME', function (assert) {
   "use strict";
   let model = this.subject({type: 'FOO'});
   // let store = this.store();
@@ -29,7 +28,7 @@ test('is income is false if type !== INCOME', function(assert) {
 });
 
 
-test('is expense is true if type === EXPENSE', function(assert) {
+test('is expense is true if type === EXPENSE', function (assert) {
   "use strict";
   let model = this.subject({type: 'EXPENSE'});
   // let store = this.store();
@@ -37,8 +36,7 @@ test('is expense is true if type === EXPENSE', function(assert) {
 });
 
 
-
-test('is expense is false if type !== INCOME', function(assert) {
+test('is expense is false if type !== INCOME', function (assert) {
   "use strict";
   let model = this.subject({type: 'FOO'});
   // let store = this.store();

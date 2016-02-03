@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 export default DS.Model.extend({
-  amount_cents: DS.attr('number'),
+  amount_cents: DS.attr('number', {defaultValue: 0}),
   currency: DS.attr('string'),
   date: DS.attr('date'),
   description: DS.attr('string'),
@@ -11,17 +11,22 @@ export default DS.Model.extend({
   type: DS.attr('string', {defaultValue: 'INCOME'}),
   payment_mean: DS.belongsTo('payment-mean'),
   bank_account: DS.belongsTo('bank-account'),
-  isEditing: DS.attr('boolean', {defaultValue: false, transient: true}),
-  amount: DS.attr('number', {transient: true}),
   is_confirmed: DS.attr('boolean', {defaultValue: false}),
+  categories: DS.hasMany('Category'),
 
 
   isIncome: Ember.computed.equal('type', 'INCOME'),
   isExpense: Ember.computed.equal('type', 'EXPENSE'),
 
-  amountChanged: Ember.observer('amount', function () {
-    "use strict";
-    this.set('amount_cents', parseFloat(this.get('amount')) * 100);
+  amount: Ember.computed('amount_cents', {
+    get() {
+      return `${parseFloat(this.get('amount_cents')) / 100}`;
+    },
+    set(key, value) {
+      let amount_cents = parseFloat(value * 100);
+      this.set('amount_cents', amount_cents);
+      return value;
+    }
   })
 
 });

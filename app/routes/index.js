@@ -6,7 +6,8 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       transactions: this.store.findAll('Transaction'),
       paymentMeans: this.store.findAll('PaymentMean'),
-      bankAccounts: this.store.findAll('BankAccount')
+      bankAccounts: this.store.findAll('BankAccount'),
+      categories: this.store.findAll('Category'),
     });
   }
 });

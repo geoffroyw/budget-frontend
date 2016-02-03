@@ -1,19 +1,19 @@
 <td class="col-md-1">
-    {{#if model.isEditing}}
+    {{#if isEditing}}
         {{bootstrap-datepicker value=model.date class='form-control'}}
     {{else}}
         {{format-date model.date 'DD/MM/YYYY'}}
     {{/if}}
 </td>
 <td class="col-md-2">
-    {{#if model.isEditing}}
+    {{#if isEditing}}
         {{input type='text' value=model.description class='form-control'}}
     {{else}}
         {{model.description}}
     {{/if}}
 </td>
 <td class="col-md-2 text-right">
-    {{#if model.isEditing}}
+    {{#if isEditing}}
         <div class="row">
             <div class="col-xs-6">
                 {{input type='text' value=model.amount class='form-control'}}
@@ -30,7 +30,7 @@
     {{/if}}
 </td>
 <td class="col-md-1">
-    {{#if model.isEditing}}
+    {{#if isEditing}}
         {{ember-selectize
         content=paymentMeans
         optionLabelPath='content.name'
@@ -40,7 +40,7 @@
     {{/if}}
 </td>
 <td class="col-md-1">
-    {{#if model.isEditing}}
+    {{#if isEditing}}
         {{ember-selectize
         content=bankAccounts
         optionLabelPath='content.name'
@@ -50,18 +50,33 @@
     {{/if}}
 </td>
 <td class="col-md-2">
- TODO
+    {{#if isEditing}}
+        {{ember-selectize
+        content=allCategoriesName
+        multiple=true
+        optionValuePath='content.name'
+        optionLabelPath='content.name'
+        selection=selectedCategoriesName
+        delimiter=','
+        create-item='newCategory'
+        }}
+    {{else}}
+        {{#each model.categories as  |category|}}
+            {{category.name}}
+        {{/each}}
+    {{/if}}
+
 </td>
 <td class="col-md-1">
     {{input type='checkbox' checked=model.is_confirmed}}
 </td>
 <td class="col-md-1">
-    {{#if model.isEditing}}
-        <button class="btn btn-success btn-xs" {{action 'save' model}}><i class="glyphicon glyphicon-ok"></i></button>
-        <button class="btn btn-default btn-xs" {{action 'cancelEdit' model}}><i class="glyphicon glyphicon-remove"></i>
+    {{#if isEditing}}
+        <button class="btn btn-success btn-xs" {{action 'save'}}><i class="glyphicon glyphicon-ok"></i></button>
+        <button class="btn btn-default btn-xs" {{action 'cancelEdit'}}><i class="glyphicon glyphicon-remove"></i>
         </button>
     {{else}}
-        <button class="btn btn-primary btn-xs" {{action 'edit' model}}><i class="glyphicon glyphicon-edit"></i></button>
+        <button class="btn btn-primary btn-xs" {{action 'edit'}}><i class="glyphicon glyphicon-edit"></i></button>
     {{/if}}
 </td>
 {{yield}}

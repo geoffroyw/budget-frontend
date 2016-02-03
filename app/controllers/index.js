@@ -6,7 +6,13 @@ export default Ember.Controller.extend({
   actions: {
     newTransaction() {
       "use strict";
-      this.set('newTransaction', this.store.createRecord('transaction', {isEditing: true, date: new Date()}));
+      this.set('newTransaction', this.store.createRecord('transaction', {date: new Date()}));
+    },
+
+    createNewCategory(name) {
+      "use strict";
+      this.get('store').createRecord('Category', {name: name});
+      this.set('model.categories', this.store.findAll('Category'));
     }
   }
 });

@@ -18,7 +18,12 @@
                 </thead>
                 <tbody>
                 {{#each model.transactions as |transaction|}}
-                    {{editable-transaction-row model=transaction paymentMeans=model.paymentMeans bankAccounts=model.bankAccounts}}
+                    {{editable-transaction-row
+                    model=transaction
+                    paymentMeans=model.paymentMeans
+                    bankAccounts=model.bankAccounts
+                    categories=model.categories
+                    createNewCategory='createNewCategory'}}
                 {{/each}}
                 </tbody>
             </table>
