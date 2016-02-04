@@ -18,6 +18,11 @@ export default DS.Model.extend({
   isIncome: Ember.computed.equal('type', 'INCOME'),
   isExpense: Ember.computed.equal('type', 'EXPENSE'),
 
+  isCrossCurrency: Ember.computed('currency', 'payment_mean.currency', function () {
+    "use strict";
+    return this.get('currency') !== this.get('payment_mean.currency');
+  }),
+
   amount: Ember.computed('amount_cents', {
     get() {
       return `${parseFloat(this.get('amount_cents')) / 100}`;

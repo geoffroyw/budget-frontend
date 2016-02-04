@@ -27,6 +27,11 @@
             -
         {{/if}}
         {{format-amount model.amount_cents model.currency}}
+        {{#if model.isCrossCurrency}}
+            <small>
+                *
+            </small>
+        {{/if}}
     {{/if}}
 </td>
 <td class="col-md-1">
