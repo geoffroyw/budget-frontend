@@ -47,9 +47,7 @@ module.exports = function (app) {
 
   bankAccountsRouter.get('/:id', function (req, res) {
     res.send({
-      'bank-accounts': {
-        id: req.params.id
-      }
+      'data': initialData['data'][req.params.id]
     });
   });
 
