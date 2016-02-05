@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,17 +9,21 @@
 
     {{content-for "head"}}
 
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/budget-frontend.css">
 
     {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
+</head>
+<body>
+{{content-for "body"}}
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/budget-frontend.js"></script>
+<script src="assets/vendor.js"></script>
+<script src="assets/budget-frontend.js"></script>
 
-    {{content-for "body-footer"}}
-  </body>
+{{content-for "body-footer"}}
+</body>
 </html>

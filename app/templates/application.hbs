@@ -1,8 +1,29 @@
-{{ render 'nav'}}
+{{ render 'header'}}
 
 <div class="container-fluid" role="main">
-    {{outlet}}
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+
+                {{#link-to 'index' tagName='li' href=false}}
+                    {{#link-to 'index'}}Home{{/link-to}}
+                {{/link-to}}
+                <li><a href="#">Reports</a></li>
+                {{#link-to 'accounts' tagName='li' href=false}}
+                    {{#link-to 'accounts'}}Bank Accounts{{/link-to}}
+                {{/link-to}}
+                {{#link-to 'payment-means' tagName='li' href=false}}
+                    {{#link-to 'payment-means'}}Means of Payment{{/link-to}}
+                {{/link-to}}
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            {{outlet}}
+
+        </div>
+    </div>
 </div>
 
 
-{{ render 'footer'}}
+{{!--{{ render 'footer'}}--}}
