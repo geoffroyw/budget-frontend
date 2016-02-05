@@ -1,5 +1,5 @@
 /*jshint node:true*/
-module.exports = function(app) {
+module.exports = function (app) {
   var express = require('express');
   var paymentMeanRouter = express.Router();
 
@@ -36,15 +36,21 @@ module.exports = function(app) {
       }]
   };
 
-  paymentMeanRouter.get('/', function(req, res) {
+  paymentMeanRouter.get('/', function (req, res) {
     res.send(initialData);
   });
 
-  paymentMeanRouter.post('/', function(req, res) {
+  paymentMeanRouter.post('/', function (req, res) {
     res.status(201).end();
   });
 
-  paymentMeanRouter.get('/:id', function(req, res) {
+  paymentMeanRouter.get('/:id', function (req, res) {
+    res.send({
+      'data': initialData['data'][req.params.id]
+    });
+  });
+
+  paymentMeanRouter.put('/:id', function (req, res) {
     res.send({
       'payment-mean': {
         id: req.params.id
@@ -52,15 +58,7 @@ module.exports = function(app) {
     });
   });
 
-  paymentMeanRouter.put('/:id', function(req, res) {
-    res.send({
-      'payment-mean': {
-        id: req.params.id
-      }
-    });
-  });
-
-  paymentMeanRouter.delete('/:id', function(req, res) {
+  paymentMeanRouter.delete('/:id', function (req, res) {
     res.status(204).end();
   });
 
