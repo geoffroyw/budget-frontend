@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Mean of Payment</th>
+            <th>Bank Account</th>
+            <th>Categories</th>
+            <th>Confirmed</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each transactions as |transaction|}}
+            {{editable-transaction-row
+            model=transaction
+            paymentMeans=paymentMeans
+            bankAccounts=bankAccounts
+            categories=categories
+            createNewCategory='createNewCategory'}}
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+<div class="btn-group">
+    <button class="btn btn-primary" {{action 'newTransaction'}}>Add transaction</button>
+
+</div>
+<p>
+    <small>* : Cross currency transaction</small>
+</p>
+
+{{yield}}
