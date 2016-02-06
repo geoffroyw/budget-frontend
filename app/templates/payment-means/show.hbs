@@ -1,4 +1,66 @@
-<h2 id="title">Mean of payment details</h2>
+<div class="content">
+    <div class="mail-inbox">
+        <div class="head">
+            <h3>{{model.name}} </h3>
+            <input type="text" class="form-control" placeholder="Search transactions...">
+        </div>
+        <div class="filters">
+            <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input id="check-all"
+                                                                                                          type="checkbox"
+                                                                                                          name="checkall"
+                                                                                                          style="position: absolute; opacity: 0;">
+                <ins class="iCheck-helper"
+                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+            </div>
+            <span>Select All</span>
 
-{{payment-mean-form payment-mean=model}}
-{{outlet}}
+            <div class="btn-group pull-right">
+                <button class="btn btn-sm btn-flat btn-default" type="button"><i class="fa fa-angle-left"></i></button>
+                <button class="btn btn-sm btn-flat btn-default" type="button"><i class="fa fa-angle-right"></i></button>
+            </div>
+            <div class="btn-group pull-right">
+                <button data-toggle="dropdown" class="btn btn-sm btn-flat btn-default dropdown-toggle" type="button">
+                    Order by <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="#">Date</a></li>
+                    <li><a href="#">From</a></li>
+                    <li><a href="#">Subject</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Size</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="mails">
+            {{#each model.transactions as |transaction|}}
+                <div class="item">
+                    <div>
+                        <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input
+                                type="checkbox" name="c[]" style="position: absolute; opacity: 0;">
+                            <ins class="iCheck-helper"
+                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+                        </div>
+                    </div>
+                    <div>
+                    <span class="date pull-right">
+                        {{#if transaction.isExpense}}
+                            -
+                        {{/if}}
+                        {{format-amount transaction.amount_cents transaction.currency}}
+                    </span>
+                        <h4 class="from">{{transaction.description}}</h4>
+
+                        <p class="msg">
+                            {{format-date transaction.date 'DD/MM/YYYY'}}
+                            {{#if transaction.isCrossCurrency}}
+                                (This transaction is cross currency)
+                            {{/if}}
+                        </p>
+                    </div>
+                </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>

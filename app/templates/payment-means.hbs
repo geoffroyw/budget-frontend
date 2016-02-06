@@ -1,22 +1,30 @@
-<div class="row">
-    <div class="col-md-3">
-        <h2 id="title">My Means of payment</h2>
+<div class="cl-mcont aside">
+    <div class="page-aside email">
+        <div>
+            <div class="content">
+                <button class="navbar-toggle" data-target=".mail-nav" data-toggle="collapse" type="button">
+                    <span class="fa fa-chevron-down"></span>
+                </button>
+                <h2 class="page-title">Means of Payment</h2>
+            </div>
+            <div class="mail-nav collapse">
+                <ul class="nav nav-pills nav-stacked ">
+                    {{#each model as |mean|}}
+                        {{#link-to 'payment-means.show' mean tagName='li' href=false}}
+                            {{#link-to 'payment-means.show' mean}}{{mean.name}}{{/link-to}}
+                        {{/link-to}}
+                    {{/each}}
+                </ul>
 
-        <ul class="list-unstyled">
-            {{#each model as |mean|}}
-                <li>
-                    {{#link-to 'payment-means.show' mean}}{{mean.name}}{{/link-to}}
-                </li>
-            {{/each}}
-        </ul>
-
-        {{#link-to 'payment-means.new' class='btn btn-primary'}}Add a new mean of payment{{/link-to}}
+                <div class="compose">
+                    {{#link-to 'payment-means.new' class='btn btn-flat btn-primary'}}
+                        Add a mean of payment
+                    {{/link-to}}
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="col-md-9">
-        {{outlet}}
-    </div>
-
+    {{outlet}}
 </div>
-

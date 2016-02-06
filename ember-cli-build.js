@@ -5,9 +5,6 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function (defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
-    sassOptions: {
-      extension: 'sass'
-    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -44,28 +41,29 @@ module.exports = function (defaults) {
     destDir: 'fonts'
   });
 
+
+  app.import('bower_components/components-font-awesome/css/font-awesome.min.css');
+  app.import('bower_components/components-font-awesome/fonts/FontAwesome.otf', {
+    destDir: 'fonts'
+  });
+  app.import('bower_components/components-font-awesome/fonts/fontawesome-webfont.eot', {
+    destDir: 'fonts'
+  });
+  app.import('bower_components/components-font-awesome/fonts/fontawesome-webfont.svg', {
+    destDir: 'fonts'
+  });
+  app.import('bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf', {
+    destDir: 'fonts'
+  });
+  app.import('bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2', {
+    destDir: 'fonts'
+  });
+
+
   app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 
   app.import('bower_components/moment/moment.js');
   app.import('bower_components/accounting/accounting.js');
-
-  app.import('bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css');
-
-  app.import('bower_components/material-design-iconic-font/dist/fonts/Material-Design-Iconic-Font.eot', {
-    destDir: 'fonts'
-  });
-  app.import('bower_components/material-design-iconic-font/dist/fonts/Material-Design-Iconic-Font.svg', {
-    destDir: 'fonts'
-  });
-  app.import('bower_components/material-design-iconic-font/dist/fonts/Material-Design-Iconic-Font.ttf', {
-    destDir: 'fonts'
-  });
-  app.import('bower_components/material-design-iconic-font/dist/fonts/Material-Design-Iconic-Font.woff', {
-    destDir: 'fonts'
-  });
-  app.import('bower_components/material-design-iconic-font/dist/fonts/Material-Design-Iconic-Font.woff2', {
-    destDir: 'fonts'
-  });
 
 
   return app.toTree();

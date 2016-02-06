@@ -1,9 +1,16 @@
-<div class="row">
-    <div class="col-md-12 panel panel-default">
-        <div class="panel-body">
-            <h2 id="title">My recent transactions</h2>
-            {{transaction-table transactions=model.transactions paymentMeans=model.paymentMeans bankAccounts=model.bankAccounts categories=model.categories newTransaction='newTransaction'}}
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>My recent transactions</h3>
+                </div>
+                <div class="content">
+                    {{transaction-table transactions=model.transactions paymentMeans=model.paymentMeans bankAccounts=model.bankAccounts categories=model.categories newTransaction='newTransaction'}}
+                </div>
+            </div>
         </div>
     </div>
+
+    {{outlet}}
 </div>
-{{outlet}}
