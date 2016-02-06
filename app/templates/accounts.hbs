@@ -1,20 +1,30 @@
-<div class="row">
-    <div class="col-md-2">
-        <h2 id="title">My Accounts</h2>
+<div class="cl-mcont aside">
+    <div class="page-aside email">
+        <div>
+            <div class="content">
+                <button class="navbar-toggle" data-target=".mail-nav" data-toggle="collapse" type="button">
+                    <span class="fa fa-chevron-down"></span>
+                </button>
+                <h2 class="page-title">My Bank accounts</h2>
+            </div>
+            <div class="mail-nav collapse">
+                <ul class="nav nav-pills nav-stacked ">
+                    {{#each model as |account|}}
+                        {{#link-to 'accounts.show' account tagName='li' href=false}}
+                            {{#link-to 'accounts.show' account}}{{account.name}}{{/link-to}}
+                        {{/link-to}}
+                    {{/each}}
+                </ul>
 
-        <ul class="list-unstyled">
-            {{#each model as |account|}}
-                <li>
-                    {{#link-to 'accounts.show' account}}{{account.name}}{{/link-to}}
-                </li>
-            {{/each}}
-        </ul>
-
-        {{#link-to 'accounts.new' class='btn btn-primary'}}Add a new account{{/link-to}}
+                <div class="compose">
+                    {{#link-to 'accounts.new' class='btn btn-flat btn-primary'}}
+                        Add an account
+                    {{/link-to}}
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="col-md-10">
-        {{outlet}}
-    </div>
+    {{outlet}}
 </div>
