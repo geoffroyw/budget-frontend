@@ -9,7 +9,6 @@ export default Ember.Component.extend({
     },
     createNewCategory(category_name) {
       "use strict";
-      console.log('foo');
       this.sendAction('createNewCategory', category_name);
     }
   }

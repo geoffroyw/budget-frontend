@@ -11,7 +11,6 @@ export default Ember.Controller.extend({
 
     createNewCategory(name) {
       "use strict";
-      console.log('bar');
       this.get('store').createRecord('Category', {name: name});
       this.set('model.categories', this.store.findAll('Category'));
     }
