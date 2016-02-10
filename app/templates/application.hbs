@@ -1,16 +1,19 @@
-<div id="cl-wrapper">
-    <div class="cl-sidebar">
-        {{render 'sidebar'}}
-    </div>
-
-    <div class="container-fluid" id="pcont">
-
-        <div id="head-nav" class="navbar navbar-default">
-            {{ render 'header'}}
+{{#if session.isAuthenticated}}
+    <div id="cl-wrapper">
+        <div class="cl-sidebar">
+            {{render 'sidebar'}}
         </div>
 
+        <div class="container-fluid" id="pcont">
 
+            <div id="head-nav" class="navbar navbar-default">
+                {{ render 'header'}}
+            </div>
             {{outlet}}
-
+        </div>
     </div>
-</div>
+{{else}}
+    Foo bar baz
+    {{session.isAuthenticated}}
+    {{outlet}}
+{{/if}}
