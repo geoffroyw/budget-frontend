@@ -14,14 +14,13 @@
 </td>
 <td class="col-md-2 text-right">
     {{#if isEditing}}
-        <div class="row">
-            <div class="col-xs-6">
-                {{input type='text' value=model.amount class='form-control'}}
-            </div>
-            <div class="col-xs-6">
-                {{input type='text' value=model.currency class='form-control' placeholder='Currency'}}
-            </div>
+        <div class="col-xs-5">
+            {{input type='text' value=model.amount class='form-control'}}
         </div>
+        <div class="col-xs-5">
+            {{input type='text' value=model.currency class='form-control' placeholder='Currency'}}
+        </div>
+
     {{else}}
         {{#if model.isExpense}}
             -
