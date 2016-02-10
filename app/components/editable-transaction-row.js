@@ -52,7 +52,7 @@ export default Ember.Component.extend({
       this.get('model.categories').clear();
 
       let selectedCategories = [];
-      
+
       const flashMessages = Ember.get(this, 'flashMessages');
 
       this.get('selectedCategoriesName').forEach(function (selected_category) {

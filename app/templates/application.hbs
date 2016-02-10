@@ -12,8 +12,11 @@
 
 
             {{#each flashMessages.arrangedQueue as |flash|}}
-                {{flatdream-flash flash=flash}}
+                <div class="flash-messages">
+                    {{flatdream-flash flash=flash}}
+                </div>
             {{/each}}
+
 
             {{outlet}}
         </div>
