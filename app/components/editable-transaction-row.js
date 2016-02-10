@@ -52,6 +52,8 @@ export default Ember.Component.extend({
       this.get('model.categories').clear();
 
       let selectedCategories = [];
+      
+      const flashMessages = Ember.get(this, 'flashMessages');
 
       this.get('selectedCategoriesName').forEach(function (selected_category) {
 
@@ -68,9 +70,13 @@ export default Ember.Component.extend({
         _this.get('model.categories').pushObject(category);
       });
 
+
       this.get('model').save().then(function () {
         _this.set('isEditing', false);
-      }); //TODO proper exception handling
+        flashMessages.success('Transaction successfully saved!');
+      }).catch(() => {
+        flashMessages.danger('Error while saving transaction, please try again.');
+      });
 
     },
 
