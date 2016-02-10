@@ -1,4 +1,4 @@
 <div class="container-fluid">
-    {{account-form account=model isEditing=true cancelAction='goToAccounts'}}
+    {{account-form account=model isEditing=true cancelAction='goToAccounts'  onSaveSuccess='goToModel'}}
     {{outlet}}
 </div>

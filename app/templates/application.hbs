@@ -9,6 +9,12 @@
             <div id="head-nav" class="navbar navbar-default">
                 {{ render 'header'}}
             </div>
+
+
+            {{#each flashMessages.arrangedQueue as |flash|}}
+                {{flatdream-flash flash=flash}}
+            {{/each}}
+
             {{outlet}}
         </div>
     </div>

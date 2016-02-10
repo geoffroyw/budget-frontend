@@ -2,28 +2,30 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   account: undefined,
-  isEditing: false,
-
-  isNotEditing: Ember.computed.not('isEditing'),
 
   actions: {
     save() {
       "use strict";
-      //TODO proper error handling
-      this.get('account').save();
-      this.set('isEditing', false);
+      const flashMessages = Ember.get(this, 'flashMessages');
 
+      let _this = this;
+
+      let account = this.get('account');
+      account.save().then(() => {
+        flashMessages.success('Successfully saved!');
+        _this.sendAction('onSaveSuccess');
+      }).catch(() => {
+        flashMessages.danger('Error while saving the account. Please try again');
+      });
     },
 
     edit() {
       "use strict";
-      this.set('isEditing', true);
     },
 
     cancel() {
       "use strict";
       this.get('account').rollbackAttributes();
-      this.set('isEditing', false);
       this.sendAction('cancelAction');
     }
   }

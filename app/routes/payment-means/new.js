@@ -10,6 +10,11 @@ export default Ember.Route.extend({
     goToAccounts() {
       "use strict";
       this.transitionTo('payment-means');
+    },
+
+    goToModel() {
+      "use strict";
+      this.transitionTo('payment-means.show', this.get('currentModel'));
     }
   }
 });
