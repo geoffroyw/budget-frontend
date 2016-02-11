@@ -3,6 +3,10 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   newTransaction: undefined,
 
+  transactionSorting: ['date'],
+
+  sortedContent: Ember.computed.sort('model.transactions', 'transactionSorting'),
+
   actions: {
     newTransaction() {
       "use strict";
