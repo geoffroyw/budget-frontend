@@ -8,7 +8,7 @@ export default Ember.Route.extend({
 
   renderTemplate() {
     "use strict";
-    this.render('payment-means.new')
+    this.render('payment-means.new');
   },
 
   actions: {

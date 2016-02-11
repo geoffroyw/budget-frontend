@@ -8,7 +8,7 @@ export default Ember.Route.extend({
 
   renderTemplate() {
     "use strict";
-    this.render('accounts.new')
+    this.render('accounts.new');
   },
 
   actions: {
