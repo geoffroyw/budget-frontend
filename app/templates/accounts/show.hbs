@@ -1,7 +1,10 @@
 <div class="content">
     <div class="mail-inbox">
         <div class="head">
-            <h3>{{model.name}} </h3>
+            <h3>{{model.name}} (Account in {{model.currency}}) <span class="pull-right">
+                {{#link-to "accounts.edit" model}}<i class="fa fa-pencil"></i>{{/link-to}}
+            </span></h3>
+
             <input type="text" class="form-control" placeholder="Search transactions...">
         </div>
         <div class="filters">

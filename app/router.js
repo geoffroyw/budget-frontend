@@ -9,6 +9,7 @@ Router.map(function () {
   this.route('accounts', {path: '/accounts'}, function () {
     this.route('new', {path: '/new'});
     this.route('show', {path: '/:id'});
+    this.route('edit', {path: '/:id/edit'});
   });
   this.route('payment-means', function () {
     this.route('new', {path: '/new'});
