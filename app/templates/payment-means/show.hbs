@@ -25,17 +25,14 @@
                     Order by <span class="caret"></span>
                 </button>
                 <ul role="menu" class="dropdown-menu">
-                    <li><a href="#">Date</a></li>
-                    <li><a href="#">From</a></li>
-                    <li><a href="#">Subject</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Size</a></li>
+                    <li><a href="#" {{action 'sort' 'date'}}>Date</a></li>
+                    <li><a href="#" {{action 'sort' 'amount_cents'}}>Amount</a></li>
                 </ul>
             </div>
 
         </div>
         <div class="mails">
-            {{#each model.transactions as |transaction|}}
+            {{#each sortedTransactions as |transaction|}}
                 <div class="item">
                     <div>
                         <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input
