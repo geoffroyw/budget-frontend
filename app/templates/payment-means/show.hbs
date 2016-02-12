@@ -43,9 +43,6 @@
                     </div>
                     <div>
                     <span class="date pull-right">
-                        {{#if transaction.isExpense}}
-                            -
-                        {{/if}}
                         {{format-amount transaction.amount_cents transaction.currency}}
                     </span>
                         <h4 class="from">{{transaction.description}}</h4>

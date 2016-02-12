@@ -12,33 +12,23 @@ test('it exists', function (assert) {
 });
 
 
-test('is income is true if type === INCOME', function (assert) {
+test('is income is true if amount_cents > 0', function (assert) {
   "use strict";
-  let model = this.subject({type: 'INCOME'});
+  let model = this.subject({amount_cents: 10});
   // let store = this.store();
   assert.ok(!!model.get('isIncome'));
 });
 
-
-test('is income is false if type !== INCOME', function (assert) {
+test('is income is true if amount_cents == 0', function (assert) {
   "use strict";
-  let model = this.subject({type: 'FOO'});
+  let model = this.subject({amount_cents: 0});
   // let store = this.store();
-  assert.notOk(!!model.get('isIncome'));
+  assert.ok(!!model.get('isIncome'));
 });
 
-
-test('is expense is true if type === EXPENSE', function (assert) {
+test('is expense is true if amount_cents < 0', function (assert) {
   "use strict";
-  let model = this.subject({type: 'EXPENSE'});
+  let model = this.subject({amount_cents: -1});
   // let store = this.store();
   assert.ok(!!model.get('isExpense'));
-});
-
-
-test('is expense is false if type !== INCOME', function (assert) {
-  "use strict";
-  let model = this.subject({type: 'FOO'});
-  // let store = this.store();
-  assert.notOk(!!model.get('isExpense'));
 });

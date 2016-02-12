@@ -22,9 +22,6 @@
         </div>
 
     {{else}}
-        {{#if model.isExpense}}
-            -
-        {{/if}}
         {{format-amount model.amount_cents model.currency}}
         {{#if model.isCrossCurrency}}
             <small>

@@ -43,12 +43,6 @@ export default Ember.Component.extend({
       "use strict";
       let _this = this;
 
-      let amount = this.get('model').get('amount');
-      if (parseFloat(amount) < 0) {
-        this.get('model').set('type', 'EXPENSE');
-        this.get('model').set('amount', -1 * amount);
-      }
-
       this.get('model.categories').clear();
 
       let selectedCategories = [];

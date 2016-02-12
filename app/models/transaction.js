@@ -6,15 +6,14 @@ export default DS.Model.extend({
   currency: DS.attr('string'),
   date: DS.attr('date'),
   description: DS.attr('string'),
-  type: DS.attr('string', {defaultValue: 'INCOME'}),
   payment_mean: DS.belongsTo('payment-mean'),
   bank_account: DS.belongsTo('bank-account'),
   is_confirmed: DS.attr('boolean', {defaultValue: false}),
   categories: DS.hasMany('Category'),
 
 
-  isIncome: Ember.computed.equal('type', 'INCOME'),
-  isExpense: Ember.computed.equal('type', 'EXPENSE'),
+  isIncome: Ember.computed.gte('amount_cents', 0),
+  isExpense: Ember.computed.not('isIncome'),
 
   isCrossCurrency: Ember.computed('currency', 'payment_mean.currency', function () {
     "use strict";
