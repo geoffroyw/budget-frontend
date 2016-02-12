@@ -11,7 +11,20 @@
                 <ul class="nav nav-pills nav-stacked ">
                     {{#each model as |account|}}
                         {{#link-to 'accounts.show' account tagName='li' href=false}}
-                            {{#link-to 'accounts.show' account}}{{account.name}}{{/link-to}}
+                            {{#link-to 'accounts.show' account}}
+                                {{#if account.isBalanceNegative}}
+                                    <span class="label label-danger pull-right">
+                                        {{format-amount account.balance account.currency}}
+                                    </span>
+                                {{else}}
+                                    <span class="label label-success pull-right">
+                                        {{format-amount account.balance account.currency}}
+                                    </span>
+                                {{/if}}
+
+                                {{account.name}}
+                            {{/link-to}}
+
                         {{/link-to}}
                     {{/each}}
                 </ul>
