@@ -33,7 +33,7 @@
         </div>
         <div class="mails">
             {{#each sortedTransactions as |transaction|}}
-                <div class="item">
+                <div class="item {{if transaction.isExpense 'text-danger' 'text-success'}}">
                     <div>
                         <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input
                                 type="checkbox" name="c[]" style="position: absolute; opacity: 0;">
