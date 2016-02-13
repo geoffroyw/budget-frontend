@@ -7,6 +7,11 @@ export default Ember.Component.extend({
 
   isNewTransaction: Ember.computed.equal('model.id', null),
 
+  saveTransactionOnConfirmation: Ember.observer('model.is_confirmed', function () {
+    "use strict";
+    this.get('model').save();
+  }),
+
   actions: {
     edit() {
       "use strict";
