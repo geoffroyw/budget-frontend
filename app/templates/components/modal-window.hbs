@@ -1,0 +1,17 @@
+<div class="modal fade colored-header in" id="md-colored" tabindex="-1" role="dialog" style="display: block;" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{title}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                {{yield}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-flat" {{action 'ok'}}>OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,16 +8,24 @@
                 <div class="content">
                     {{transaction-table
                     transactions=model.transactions
-                    paymentMeans=model.paymentMeans
-                    bankAccounts=model.bankAccounts
-                    categories=model.categories
-                    newTransaction='newTransaction'
                     createNewCategory='createNewCategory'
+                    editTransaction='editTransaction'
+                    newTransaction='openTransactionFormModal'
                     }}
                 </div>
             </div>
         </div>
     </div>
+
+    {{#if showTransactionForm}}
+        {{transaction-form
+        bankAccounts=model.bankAccounts
+        paymentMeans=model.paymentMeans
+        categories=model.categories
+        model=selectedTransaction
+        removeModal='removeModal'
+        createNewCategory='createNewCategory'}}
+    {{/if}}
 
     {{outlet}}
 </div>

@@ -10,6 +10,11 @@ export default Ember.Component.extend({
     createNewCategory(category_name) {
       "use strict";
       this.sendAction('createNewCategory', category_name);
+    },
+
+    editTransaction(transaction) {
+      "use strict";
+      this.sendAction('editTransaction', transaction);
     }
   }
 });

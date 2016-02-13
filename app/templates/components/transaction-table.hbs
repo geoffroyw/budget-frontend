@@ -14,12 +14,9 @@
         </thead>
         <tbody class="no-border-y">
         {{#each transactions as |transaction|}}
-            {{editable-transaction-row
+            {{transaction-table-row
             model=transaction
-            paymentMeans=paymentMeans
-            bankAccounts=bankAccounts
-            categories=categories
-            createNewCategory='createNewCategory'}}
+            editTransaction='editTransaction'}}
         {{/each}}
         </tbody>
     </table>
