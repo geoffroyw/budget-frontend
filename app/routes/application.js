@@ -3,6 +3,24 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
+  isSubMenuOpen: false,
+  subMenuClass: Ember.computed('isSubMenuOpen', function() {
+    "use strict";
+    if(this.get('isSubMenuOpen')) {
+      return 'open';
+    }
+    return '';
+  }),
+
+  subMenuStyle:  Ember.computed('isSubMenuOpen', function() {
+    "use strict";
+    if(this.get('isSubMenuOpen')) {
+      return 'display: block';
+    }
+    return '';
+  }),
+
+
   actions: {
     showModal(name, model) {
       "use strict";
@@ -25,6 +43,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         outlet: 'modal',
         parentView: 'application'
       });
+    },
+
+    toggleSubMenu() {
+      "use strict";
+      this.toggleProperty('isSubMenuOpen');
     }
   }
 });
