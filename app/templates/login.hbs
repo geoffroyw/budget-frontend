@@ -19,7 +19,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    {{input id='username' placeholder='Usernme' value=identification class="form-control"}}
+                                    {{input id='username' placeholder='Username' value=identification class="form-control"}}
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
 
                     </div>
                     <div class="foot">
-                        <button class="btn btn-default" data-dismiss="modal" type="button">Register</button>
+                        {{#link-to 'signup' class='btn btn-default'}}Register{{/link-to}}
                         <button class="btn btn-primary" data-dismiss="modal" type="submit">Log me in</button>
                     </div>
                 </form>

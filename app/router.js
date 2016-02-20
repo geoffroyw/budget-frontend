@@ -21,6 +21,7 @@ Router.map(function () {
     this.route('recurring');
   });
   this.route('login');
+  this.route('signup');
 });
 
 export default Router;
