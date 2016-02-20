@@ -19,9 +19,7 @@
     {{model.bank_account.name}}
 </td>
 <td class="col-md-2">
-    {{#each model.categories as  |category|}}
-        {{category.name}}
-    {{/each}}
+    {{category-names categories=model.categories}}
 </td>
 <td class="col-md-1">
     {{input type='checkbox' checked=model.is_confirmed}}

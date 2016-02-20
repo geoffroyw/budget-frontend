@@ -23,6 +23,9 @@ export default Ember.Component.extend({
 
   allCategoriesName: Ember.computed('categories', function () {
     "use strict";
+    if (this.get('categories') === undefined) {
+      return;
+    }
     return this.get('categories').map(function (e) {
       return {name: e.get('name')};
     });

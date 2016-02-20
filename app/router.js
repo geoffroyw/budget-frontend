@@ -16,6 +16,10 @@ Router.map(function () {
     this.route('show', {path: '/:id'});
     this.route('edit', {path: '/:id/edit'});
   });
+  this.route('transactions', {path: '/transactions'}, function () {
+    "use strict";
+    this.route('recurring');
+  });
   this.route('login');
 });
 

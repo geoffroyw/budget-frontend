@@ -1,5 +1,7 @@
 <a href="#" {{action 'openSubMenu'}}><i class="fa fa-exchange"></i>Transactions</a>
 <ul class="sub-menu" style="{{subMenuStyle}}">
-    <li><a href="#"><i class="fa fa-calendar"></i>Recurring Transaction</a></li>
+    {{#link-to 'transactions.recurring' tagName='li' href=false}}
+        {{#link-to 'transactions.recurring'}}<i class="fa fa-calendar"></i>Recurring Transaction{{/link-to}}
+    {{/link-to}}
 </ul>
 
