@@ -15,8 +15,9 @@ export default Ember.Controller.extend({
 
     createNewCategory(name) {
       "use strict";
+      console.log('foo');
       this.get('store').createRecord('Category', {name: name}).save();
-      this.set('model.categories', this.store.findAll('Category'));
+      this.set('metaData.categories', this.store.findAll('Category'));
     },
 
     removeModal() {

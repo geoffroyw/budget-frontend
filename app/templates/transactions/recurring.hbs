@@ -24,14 +24,15 @@
                             <tbody class="no-border-y">
                             {{#each model as |transaction|}}
                                 <tr>
-                                    <td>{{transaction.recurringType}}</td>
+                                    <td>{{transaction.recurring_type}}</td>
                                     <td>{{format-date model.last_run_on 'DD/MM/YYYY'}}</td>
+                                    <td>{{format-amount transaction.description}}</td>
                                     <td>{{format-amount transaction.amount_cents transaction.currency}}</td>
                                     <td>{{transaction.payment_mean.name}}</td>
                                     <td>{{transaction.bank_account.name}}</td>
                                     <td>{{category-names categories=transaction.categories}}</td>
-                                    <td>{{transaction.is_active}}</td>
-                                    <td></td>
+                                    <td>{{input type='checkbox' checked=transaction.is_active}}</td>
+                                    <td>&nbsp;</td>
                                 </tr>
                             {{/each}}
                             </tbody>
@@ -50,9 +51,9 @@
         </div>
     </div>
 
-    
+
     {{#if showForm}}
-        {{transaction-form
+        {{recurring-transaction-form
         bankAccounts=metaData.bankAccounts
         paymentMeans=metaData.paymentMeans
         categories=metaData.categories
