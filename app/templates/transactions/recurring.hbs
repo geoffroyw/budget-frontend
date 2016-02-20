@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{transaction.recurring_type}}</td>
                                     <td>{{format-date model.last_run_on 'DD/MM/YYYY'}}</td>
-                                    <td>{{format-amount transaction.description}}</td>
+                                    <td>{{transaction.description}}</td>
                                     <td>{{format-amount transaction.amount_cents transaction.currency}}</td>
                                     <td>{{transaction.payment_mean.name}}</td>
                                     <td>{{transaction.bank_account.name}}</td>
