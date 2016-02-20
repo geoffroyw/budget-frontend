@@ -21,6 +21,8 @@ export default DS.Model.extend({
       this.set('amount_cents', amount_cents);
       return value;
     }
-  })
+  }),
+
+  isActive: Ember.computed.alias('is_active')
 
 });
