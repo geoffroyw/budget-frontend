@@ -4,6 +4,9 @@ import Ember from 'ember';
 export function formatDate(params/*, hash*/) {
   let date = params[0];
   let format = params[1];
+  if (date === undefined) {
+    return "";
+  }
   return moment(date).format(format);
 }
 

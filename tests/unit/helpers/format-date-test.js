@@ -14,3 +14,10 @@ test('it formats date in the given format with moment', function(assert) {
   result = formatDate([date, 'LL']);
   assert.equal(result, moment(date).format('LL'));
 });
+
+test('it returns empty string if date is undefined', function(assert) {
+  let date;
+  let result = formatDate([date, 'L']);
+  assert.equal(result, "");
+
+});
