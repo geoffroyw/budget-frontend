@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   selectedCategoriesName: [],
+  currencyService: Ember.inject.service('currency'),
 
   setSelectedCategories: Ember.observer('model.categories', function () {
     "use strict";
@@ -11,6 +12,7 @@ export default Ember.Component.extend({
 
     this.set('selectedCategoriesName', selectedCategories);
   }).on('init'),
+
 
   title: Ember.computed('model.id', function () {
     "use strict";

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   account: undefined,
+  currencyService: Ember.inject.service('currency'),
 
   actions: {
     save() {

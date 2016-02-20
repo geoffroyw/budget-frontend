@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   selectedCategoriesName: [],
+  currencyService: Ember.inject.service('currency'),
 
   frequencies: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
 

@@ -9,7 +9,10 @@
             <label class="col-sm-1 control-label">Currency:</label>
 
             <div class="col-sm-4">
-                {{input value=account.currency class='form-control' id='account-currency-input'}}
+                {{ember-selectize
+                content=currencyService.currencies
+                selection=account.currency
+                }}
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   'payment-mean': undefined,
+  currencyService: Ember.inject.service('currency'),
   actions: {
     save() {
       "use strict";
