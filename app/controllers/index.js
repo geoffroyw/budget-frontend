@@ -18,11 +18,6 @@ export default Ember.Controller.extend({
   sortedContent: Ember.computed.sort('model.transactions', 'transactionSorting'),
 
   actions: {
-    /*newTransaction() {
-     "use strict";
-     this.set('newTransaction', this.store.createRecord('transaction', {date: new Date()}));
-     },*/
-
     openTransactionFormModal() {
       "use strict";
       let selectedTransaction = this.store.createRecord('transaction', {date: new Date()});
