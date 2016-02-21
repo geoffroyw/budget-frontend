@@ -46,7 +46,10 @@
                     <span class="date pull-right">
                         {{format-amount transaction.amount_cents transaction.currency}}
                     </span>
-                        <h4 class="from">{{transaction.description}}</h4>
+                        <h4 class="from">
+                            {{transaction.description}}
+                            ({{category-names categories=transaction.categories}})
+                        </h4>
 
                         <p class="msg">
                             {{format-date transaction.date 'DD/MM/YYYY'}}
@@ -55,6 +58,10 @@
                             {{/if}}
                         </p>
                     </div>
+                </div>
+            {{else}}
+                <div class="item">
+                    There is no transaction
                 </div>
             {{/each}}
 
