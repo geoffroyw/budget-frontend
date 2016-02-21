@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   showTransactionForm: false,
   currencyService: Ember.inject.service('currency'),
 
-  transactionSorting: ['date'],
+  transactionSorting: ['date:desc'],
 
   newAccount: {name: '', currency: ''},
 
@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
 
   hasBankAccounts: Ember.computed.notEmpty('bankAccounts'),
 
-  sortedContent: Ember.computed.sort('model.transactions', 'transactionSorting'),
+  sortedContent: Ember.computed.sort('transactions', 'transactionSorting'),
 
   actions: {
     openTransactionFormModal() {
