@@ -9,9 +9,9 @@ export default Ember.Component.extend({
   subMenuStyle: Ember.computed('isOpen', function () {
     "use strict";
     if (this.get('isOpen')) {
-      return 'display: block;';
+      return new Ember.Handlebars.SafeString('display: block;');
     }
-    return '';
+    return new Ember.Handlebars.SafeString('');
   }),
 
   actions: {
