@@ -2,13 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  sortingKey: ['date'],
-  sortedTransactions: Ember.computed.sort('model.transactions', 'sortingKey'),
+  title: Ember.computed('model.name', 'model.currency', function () {
+    "use strict";
+    return this.get('model.name') + ' (Account in ' + this.get('model.currency') + ')';
+  }),
 
   actions: {
-    sort(key) {
+
+
+    edit() {
       "use strict";
-      this.set('sortingKey', [key]);
+      this.transitionToRoute('accounts.edit', this.get('model'));
     }
   }
 });

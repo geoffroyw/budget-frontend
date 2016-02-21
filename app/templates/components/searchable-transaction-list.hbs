@@ -1,0 +1,68 @@
+<div class="head">
+    <h3>
+        {{title}}
+        <span class="pull-right">
+            <a href="#" {{action 'goToEditForm'}}><i class="fa fa-pencil"></i></a>
+        </span>
+    </h3>
+    {{input type="text" value=searchCriteria  placeholder="Search transactions..." class="form-control"}}
+</div>
+<div class="filters">
+    <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input id="check-all"
+                                                                                                  type="checkbox"
+                                                                                                  name="checkall"
+                                                                                                  style="position: absolute; opacity: 0;">
+        <ins class="iCheck-helper"
+             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+    </div>
+    <span>Select All</span>
+
+    <div class="btn-group pull-right">
+        <button class="btn btn-sm btn-flat btn-default" type="button"><i class="fa fa-angle-left"></i></button>
+        <button class="btn btn-sm btn-flat btn-default" type="button"><i class="fa fa-angle-right"></i></button>
+    </div>
+    <div class="btn-group pull-right">
+        <button data-toggle="dropdown" class="btn btn-sm btn-flat btn-default dropdown-toggle" type="button">
+            Order by <span class="caret"></span>
+        </button>
+        <ul role="menu" class="dropdown-menu">
+            <li><a href="#" {{action 'sort' 'date'}}>Date</a></li>
+            <li><a href="#" {{action 'sort' 'amount_cents'}}>Amount</a></li>
+        </ul>
+    </div>
+
+</div>
+<div class="mails">
+    {{#each filteredTransactions as |transaction|}}
+        <div class="item {{if transaction.isExpense 'text-danger' 'text-success'}}">
+            <div>
+                <div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false"><input
+                        type="checkbox" name="c[]" style="position: absolute; opacity: 0;">
+                    <ins class="iCheck-helper"
+                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+                </div>
+            </div>
+            <div>
+                    <span class="date pull-right">
+                        {{format-amount transaction.amount_cents transaction.currency}}
+                    </span>
+                <h4 class="from">
+                    {{transaction.description}}
+                    ({{category-names categories=transaction.categories}})
+                </h4>
+
+                <p class="msg">
+                    {{format-date transaction.date 'DD/MM/YYYY'}}
+                    {{#if transaction.isCrossCurrency}}
+                        (This transaction is cross currency)
+                    {{/if}}
+                </p>
+            </div>
+        </div>
+    {{else}}
+        <div class="item">
+            There is no transaction
+        </div>
+    {{/each}}
+
+</div>
