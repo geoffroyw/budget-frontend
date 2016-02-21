@@ -58,6 +58,14 @@ export default Ember.Component.extend({
     goToEditForm() {
       "use strict";
       this.sendAction('goToEditForm');
+    },
+
+    updateTransaction(transaction) {
+      "use strict";
+      transaction.toggleProperty('isConfirmed');
+      transaction.save().catch(function () {
+        transaction.rollbackAttributes();
+      });
     }
   }
 

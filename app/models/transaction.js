@@ -20,6 +20,8 @@ export default DS.Model.extend({
     return this.get('currency') !== this.get('payment_mean.currency');
   }),
 
+  isConfirmed: Ember.computed.alias('is_confirmed'),
+
   amount: Ember.computed('amount_cents', {
     get() {
       return `${parseFloat(this.get('amount_cents')) / 100}`;
