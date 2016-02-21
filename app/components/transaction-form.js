@@ -48,7 +48,6 @@ export default Ember.Component.extend({
       this.set('selectedCategoriesName', this.get('selectedCategoriesName').filter(function (item) {
         return item.name !== selectedCategoryName;
       }));
-      console.log("remove handler" + this.get('selectedCategoriesName'));
     },
 
     removeModal() {
@@ -70,8 +69,6 @@ export default Ember.Component.extend({
         let category_models_for_selected_name = _this.get('categories').filterBy('name', selected_category.name);
         selectedCategories.pushObject(category_models_for_selected_name[0]);
       });
-
-      console.log(selectedCategories.length);
 
       this.get('model.categories').clear();
 

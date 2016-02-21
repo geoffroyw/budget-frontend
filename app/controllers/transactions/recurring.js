@@ -26,7 +26,6 @@ export default Ember.Controller.extend({
 
     editTransaction(recurring_transaction) {
       "use strict";
-      console.log("foo");
       this.set('selectedTransaction', recurring_transaction);
       this.set('showForm', true);
     }
