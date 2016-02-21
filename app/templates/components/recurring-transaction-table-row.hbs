@@ -1,10 +1,11 @@
-
-    <td>{{model.recurring_type}}</td>
-    <td>{{format-date model.last_run_on 'DD/MM/YYYY'}}</td>
-    <td>{{model.description}}</td>
-    <td>{{format-amount model.amount_cents model.currency}}</td>
-    <td>{{model.payment_mean.name}}</td>
-    <td>{{model.bank_account.name}}</td>
-    <td>{{category-names categories=model.categories}}</td>
-    <td>{{input type='checkbox' checked=model.is_active}}</td>
-    <td>&nbsp;</td>
+<td>{{model.recurring_type}}</td>
+<td>{{format-date model.last_run_on 'DD/MM/YYYY'}}</td>
+<td>{{model.description}}</td>
+<td>{{format-amount model.amount_cents model.currency}}</td>
+<td>{{model.payment_mean.name}}</td>
+<td>{{model.bank_account.name}}</td>
+<td>{{category-names categories=model.categories}}</td>
+<td>{{input type='checkbox' checked=model.is_active}}</td>
+<td>
+    <button class="btn btn-primary btn-xs" {{action 'edit'}}><i class="glyphicon glyphicon-edit"></i></button>
+</td>

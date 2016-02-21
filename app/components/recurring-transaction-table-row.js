@@ -18,5 +18,12 @@ export default Ember.Component.extend({
       flashMessages.danger('Error while ' + enablingDisabling + ' recurring transaction ' + model.get('description') + '. Please try again.');
       model.rollbackAttributes();
     });
-  })
+  }),
+
+  actions: {
+    edit() {
+      "use strict";
+      this.sendAction('editTransaction', this.get('model'));
+    }
+  }
 });

@@ -15,7 +15,6 @@ export default Ember.Controller.extend({
 
     createNewCategory(name) {
       "use strict";
-      console.log('foo');
       this.get('store').createRecord('Category', {name: name}).save();
       this.set('metaData.categories', this.store.findAll('Category'));
     },
@@ -27,6 +26,7 @@ export default Ember.Controller.extend({
 
     editTransaction(recurring_transaction) {
       "use strict";
+      console.log("foo");
       this.set('selectedTransaction', recurring_transaction);
       this.set('showForm', true);
     }

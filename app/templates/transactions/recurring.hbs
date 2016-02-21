@@ -23,7 +23,7 @@
                             </thead>
                             <tbody class="no-border-y">
                             {{#each model as |transaction|}}
-                                {{recurring-transaction-table-row model=transaction}}
+                                {{recurring-transaction-table-row model=transaction editTransaction='editTransaction'}}
                             {{/each}}
                             </tbody>
                         </table>
@@ -49,7 +49,8 @@
         categories=metaData.categories
         model=selectedTransaction
         removeModal='removeModal'
-        createNewCategory='createNewCategory'}}
+        createNewCategory='createNewCategory'
+        }}
     {{/if}}
 
     {{outlet}}
