@@ -20,6 +20,7 @@ Router.map(function () {
     "use strict";
     this.route('recurring');
   });
+  this.route('reports');
   this.route('login');
   this.route('signup');
 });
