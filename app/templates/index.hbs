@@ -1,4 +1,35 @@
 <div class="cl-mcont">
+
+    {{#unless hasBankAccounts}}
+        {{#modal-window title='Create a bank account' ok='createAccount' close='removeModal'}}
+            <div class="text-center">
+                <h4>Welcome to MyBudget</h4>
+                <p>You can start by adding a bank account.</p>
+            </div>
+
+            <form {{action 'ok' on='submit'}} class="form-horizontal">
+                <div class="form-group">
+                    <label for="date" class="col-sm-4 control-label">Account name</label>
+                    <div class="col-sm-4">
+                        {{input value=newAccount.name class='form-control'}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Currency:</label>
+
+                    <div class="col-sm-4">
+                        {{ember-selectize
+                        content=currencyService.currencies
+                        selection=newAccount.currency
+                        }}
+                    </div>
+                </div>
+            </form>
+
+        {{/modal-window}}
+    {{/unless}}
+
     <div class="row">
         <div class="col-md-12">
             <div class="block-flat">
@@ -7,7 +38,7 @@
                 </div>
                 <div class="content">
                     {{transaction-table
-                    transactions=model.transactions
+                    transactions=transactions
                     createNewCategory='createNewCategory'
                     editTransaction='editTransaction'
                     newTransaction='openTransactionFormModal'
@@ -19,9 +50,9 @@
 
     {{#if showTransactionForm}}
         {{transaction-form
-        bankAccounts=model.bankAccounts
-        paymentMeans=model.paymentMeans
-        categories=model.categories
+        bankAccounts=bankAccounts
+        paymentMeans=paymentMeans
+        categories=categories
         model=selectedTransaction
         removeModal='removeModal'
         createNewCategory='createNewCategory'}}
