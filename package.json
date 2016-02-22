@@ -48,5 +48,7 @@
     "morgan": "^1.6.1",
     "loader.js": "^4.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "d3": "^3.5.16"
+  }
 }
