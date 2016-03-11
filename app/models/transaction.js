@@ -4,6 +4,9 @@ import Ember from 'ember';
 export default DS.Model.extend({
   amount_cents: DS.attr('number', {defaultValue: 0}),
   currency: DS.attr('string'),
+  settlement_amount_cents: DS.attr('number', {defaultValue: 0}),
+  settlement_currency: DS.attr('string'),
+  is_settlement_amount_indicative: DS.attr('boolean', {readOnly: true}),
   date: DS.attr('date'),
   description: DS.attr('string'),
   payment_mean: DS.belongsTo('payment-mean'),
