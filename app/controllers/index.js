@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   showTransactionForm: false,
   currencyService: Ember.inject.service('currency'),
 
-  transactionSorting: ['date:desc'],
+  transactionSorting: ['date:desc', 'id:desc'],
 
   newAccount: {name: '', currency: ''},
 
