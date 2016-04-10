@@ -10,7 +10,7 @@ export default Ember.Route.extend({
     "use strict";
     this.set('metaData', this.modelFor('transactions'));
   },
-
+  
   setupController(controller, model) {
     "use strict";
     controller.set('model', model);

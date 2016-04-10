@@ -48,6 +48,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     toggleSubMenu() {
       "use strict";
       this.toggleProperty('isSubMenuOpen');
+    },
+
+    error(error) {
+      "use strict";
+      if (error) {
+        return this.transitionTo('errorPage');
+      }
     }
   }
 });

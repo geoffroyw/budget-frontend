@@ -23,6 +23,7 @@ Router.map(function () {
   this.route('reports');
   this.route('login');
   this.route('signup');
+  this.route('errorPage', {path: '/error'});
 });
 
 export default Router;
