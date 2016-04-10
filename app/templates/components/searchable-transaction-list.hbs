@@ -1,11 +1,11 @@
 <div class="head">
     <h3>
-        {{title}}
+      {{title}}
         <span class="pull-right">
             <a href="#" {{action 'goToEditForm'}}><i class="fa fa-pencil"></i></a>
         </span>
     </h3>
-    {{input type="text" value=searchCriteria  placeholder="Search transactions..." class="form-control"}}
+  {{input type="text" value=searchCriteria  placeholder="Search transactions..." class="form-control"}}
 </div>
 <div class="filters">
     <span>Is confirmed</span>
@@ -20,40 +20,48 @@
         </button>
         <ul role="menu" class="dropdown-menu">
             <li><a href="#" {{action 'sort' 'date'}}>Date</a></li>
-            <li><a href="#" {{action 'sort' 'amount_cents'}}>Amount</a></li>
+            <li><a href="#" {{action 'sort' 'settlementAmountCents'}}>Amount</a></li>
         </ul>
     </div>
 
 </div>
 <div class="mails">
-    {{#each filteredTransactions as |transaction|}}
-        <div class="item {{if transaction.isExpense 'text-danger' 'text-success'}}">
-            <div>
-                <input type="checkbox"
-                       checked={{transaction.isConfirmed}}
-                       onclick={{action 'updateTransaction' transaction}} />
-            </div>
-            <div>
+  {{#each filteredTransactions as |transaction|}}
+      <div class="item {{if transaction.isExpense 'text-danger' 'text-success'}}">
+          <div>
+              <input type="checkbox"
+                     checked={{transaction.isConfirmed}}
+                             onclick={{action 'updateTransaction' transaction}} />
+          </div>
+          <div>
                     <span class="date pull-right">
-                        {{format-amount transaction.amount_cents transaction.currency}}
-                    </span>
-                <h4 class="from">
-                    {{transaction.description}}
-                    ({{category-names categories=transaction.categories}})
-                </h4>
+                        {{format-amount transaction.settlementAmountCents transaction.settlementCurrency}}
+                        {{#if transaction.settlementAmountIndicative}}*{{/if}}
 
-                <p class="msg">
-                    {{format-date transaction.date 'DD/MM/YYYY'}}
-                    {{#if transaction.isCrossCurrency}}
-                        (This transaction is cross currency)
-                    {{/if}}
-                </p>
-            </div>
-        </div>
-    {{else}}
-        <div class="item">
-            There is no transaction
-        </div>
-    {{/each}}
+                      {{#if transaction.isCrossCurrency}}
+                          <small>
+                              ({{format-amount transaction.amount_cents transaction.currency}})
+                          </small>
+                      {{/if}}
+
+                    </span>
+              <h4 class="from">
+                {{transaction.description}}
+                  ({{category-names categories=transaction.categories}})
+              </h4>
+
+              <p class="msg">
+                {{format-date transaction.date 'DD/MM/YYYY'}}
+                {{#if transaction.isCrossCurrency}}
+                    (This transaction is cross currency)
+                {{/if}}
+              </p>
+          </div>
+      </div>
+  {{else}}
+      <div class="item">
+          There is no transaction
+      </div>
+  {{/each}}
 
 </div>

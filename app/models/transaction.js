@@ -25,6 +25,8 @@ export default DS.Model.extend({
 
   isConfirmed: Ember.computed.alias('is_confirmed'),
 
+  settlementAmountIndicative: Ember.computed.alias('settlement_amount_indicative'),
+
   amount: Ember.computed('amount_cents', {
     get() {
       return `${parseFloat(this.get('amount_cents')) / 100}`;
@@ -34,6 +36,20 @@ export default DS.Model.extend({
       this.set('amount_cents', amount_cents);
       return value;
     }
-  })
+  }),
+
+  settlementAmount: Ember.computed('settlement_amount_cents', {
+    get() {
+      return `${parseFloat(this.get('settlement_amount_cents')) / 100}`;
+    },
+    set(key, value) {
+      let amount_cents = parseFloat(value * 100);
+      this.set('settlement_amount_cents', amount_cents);
+      return value;
+    }
+  }),
+
+  settlementAmountCents: Ember.computed.alias('settlement_amount_cents'),
+  settlementCurrency: Ember.computed.alias('settlement_currency')
 
 });

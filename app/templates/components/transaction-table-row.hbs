@@ -1,28 +1,29 @@
 <td class="col-md-1">
-    {{format-date model.date 'DD/MM/YYYY'}}
+  {{format-date model.date 'DD/MM/YYYY'}}
 </td>
 <td class="col-md-2">
-    {{model.description}}
+  {{model.description}}
 </td>
 <td class="col-md-1 text-right">
-    {{format-amount model.amount_cents model.currency}}
-    {{#if model.isCrossCurrency}}
-        <small>
-            *
-        </small>
-    {{/if}}
+  {{format-amount model.settlementAmountCents model.settlementCurrency}}
+  {{#if model.settlementAmountIndicative}}*{{/if}}
+  {{#if model.isCrossCurrency}}
+      <small>
+          ({{format-amount model.amount_cents model.currency}})
+      </small>
+  {{/if}}
 </td>
 <td class="col-md-2">
-    {{model.payment_mean.name}}
+  {{model.payment_mean.name}}
 </td>
 <td class="col-md-2">
-    {{model.bank_account.name}}
+  {{model.bank_account.name}}
 </td>
 <td class="col-md-2">
-    {{category-names categories=model.categories}}
+  {{category-names categories=model.categories}}
 </td>
 <td class="col-md-1">
-    {{input type='checkbox' checked=model.is_confirmed}}
+  {{input type='checkbox' checked=model.is_confirmed}}
 </td>
 <td class="col-md-1">
     <button class="btn btn-primary btn-xs" {{action 'edit'}}><i class="glyphicon glyphicon-edit"></i></button>
