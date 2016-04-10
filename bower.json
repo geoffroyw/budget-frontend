@@ -12,6 +12,8 @@
     "accounting": "^0.3.2",
     "bootstrap-datepicker": "^1.6.0",
     "selectize": "miguelcobain/selectize.js#master",
-    "components-font-awesome": "^4.5.0"
+    "components-font-awesome": "^4.5.0",
+    "d3": "~3.5.3",
+    "lodash": "~3.10.0"
   }
 }

@@ -22,6 +22,7 @@
     "body-parser": "^1.14.2",
     "broccoli-asset-rev": "^2.2.0",
     "ember-ajax": "0.7.1",
+    "ember-charts": "git+https://github.com/geoffroyw/ember-charts.git#b0cbca152851fc3356742fa820c2cf0c5e8710f4",
     "ember-cli": "2.4.1",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.5",
@@ -45,7 +46,7 @@
     "ember-simple-auth": "1.0.1",
     "express": "^4.13.4",
     "glob": "^4.5.3",
-    "morgan": "^1.6.1",
-    "loader.js": "^4.0.0"
+    "loader.js": "^4.0.0",
+    "morgan": "^1.6.1"
   }
 }
