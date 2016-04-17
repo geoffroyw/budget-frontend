@@ -8,59 +8,97 @@ export default Ember.Controller.extend({
   categories: Ember.computed.alias('model.categories'),
 
 
-  from: undefined,
+  from: moment().subtract(1, 'year').toDate(),
   to: new Date(),
+
+  dateInvalidMessage: Ember.computed('from', 'to', function () {
+    if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
+      return 'Date From must be before Date to';
+    }
+    return '';
+  }),
 
   lineData: null,
 
 
-  transactionChartData: Ember.computed('transactions', function () {
-    "use strict";
+  transactionChartData: [],
 
-    let ret = [];
+  actions: {
+    computeReport() {
+      "use strict";
+
+      if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
+        return;
+      }
+
+      let _this = this;
+      let filteredTransactions = this.get('transactions').filter(function (item) {
+        let itemDate = moment(item.get('date'));
+        return itemDate.isSameOrAfter(_this.get('from')) && itemDate.isSameOrBefore(_this.get('to'));
+      });
+
+      let ret = [];
+
+      this.get('paymentMeans').forEach(function (paymentMean) {
+        for (let m = moment(_this.get('from')).startOf('month'); m.isSameOrBefore(moment(_this.get('to')).startOf('month')); m.add(1, 'months')) {
+
+          let day = m.startOf('month').format('DD');
+          let month = m.startOf('month').format('MM');
+          let year = m.startOf('month').format('YYYY');
+
+          let data = {
+            time: d3.time.format('%Y-%m-%d').parse(moment(new Date(year, month - 1, day)).format('YYYY-MM-DD')),
+            label: paymentMean.get('name'),
+            value: 0,
+            type: 'money'
+          };
+
+          ret.push(data);
+
+        }
 
 
-    this.get('paymentMeans').forEach(function (paymentMean) {
+      });
 
 
-      paymentMean.get('transactions').forEach(function (transaction) {
+      filteredTransactions.forEach(function (transaction) {
+
+
         let data = {time: '', label: '', value: 0, type: 'money'};
         let updated = false;
 
 
-        ret.forEach(function (alreadyComputedDate) {
-
-          if (moment(alreadyComputedDate.time).format("YYYY-MM") === moment(transaction.get('date')).format("YYYY-MM") && alreadyComputedDate.label === paymentMean.get('name')) {
-            data = alreadyComputedDate;
+        ret.forEach(function (alreadyComputedData) {
+          if (moment(alreadyComputedData.time).format("YYYY-MM") === moment(transaction.get('date')).format("YYYY-MM") && alreadyComputedData.label === transaction.get('payment_mean.name')) {
+            data = alreadyComputedData;
             data['value'] += (transaction.get('amount_cents') / 100);
             updated = true;
 
           }
         });
-        if (!updated) {
-          let day = moment(transaction.get('date')).startOf('month').format('DD');
-          let month = moment(transaction.get('date')).startOf('month').format('MM');
-          let year = moment(transaction.get('date')).startOf('month').format('YYYY');
-
-          data.time = d3.time.format('%Y-%m-%d').parse(moment(new Date(year, month - 1, day)).format('YYYY-MM-DD'));
-          data.value = (transaction.get('amount_cents') / 100);
-          data.label = paymentMean.get('name');
-          data.type = 'money';
-          ret.push(data);
-        }
       });
 
+      ret = ret.sort(function (a, b) {
+        let aMoment = moment(a.time);
 
-    });
+        let bMoment = moment(b.time);
 
-    ret = ret.sort(function (a, b) {
-      if (a.time === b.time) {
-        return a.label >b.label ? 1: -1;
-      }
-      return a.time > b.time ? 1 : -1;
-    });
-    return ret;
-  })
+        if (aMoment.isSame(bMoment, 'day')) {
+          return a.label.localeCompare(b.label);
+        }
 
+        if (aMoment.isBefore(bMoment)) {
+          return -1;
+        }
+
+        return 1;
+
+      });
+      this.set('transactionChartData', ret);
+      return ret;
+
+
+    }
+  }
 
 });

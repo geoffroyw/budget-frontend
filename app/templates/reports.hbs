@@ -1,9 +1,46 @@
-<div class="chart-container">
-  {{time-series-chart
-  barData=transactionChartData
-  selectedInterval='M'
-  selectedSeedColor='rgb(60,110,80)'
-  }}
-</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Filter Criteria</h3>
+                </div>
+                <div class="content">
+                    <form {{action 'computeReport' on='submit'}} class="form-horizontal">
+                        <div class="form-group {{if dateInvalidMessage 'has-error'  ''}}">
+                            <label for="date" class="col-sm-1 control-label">Date From</label>
+                            <div class="col-sm-2">
+                              {{bootstrap-datepicker value=from class='form-control'}}
+                            </div>
+                            <label for="date" class="col-sm-1 control-label">Date To</label>
+                            <div class="col-sm-2">
+                              {{bootstrap-datepicker value=to class='form-control'}}
+                            </div>
+                            <div class="col-sm-2 col-sm-offset-1">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-1">
+                              {{dateInvalidMessage}}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{{outlet}}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="block-flat chart-container">
+              {{time-series-chart
+              barData=transactionChartData
+              selectedInterval='M'
+              selectedSeedColor='rgb(60,110,80)'
+              }}
+            </div>
+        </div>
+    </div>
+
+  {{outlet}}
+</div>
