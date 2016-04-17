@@ -23,14 +23,12 @@ export default Ember.Controller.extend({
 
   transactionChartData: [],
 
+  expenseByCategoryData: [],
+
+  incomeByCategoryData: [],
+
   actions: {
-    computeReport() {
-      "use strict";
-
-      if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
-        return;
-      }
-
+    computeTransactionChartData() {
       let _this = this;
       let filteredTransactions = this.get('transactions').filter(function (item) {
         let itemDate = moment(item.get('date'));
@@ -62,18 +60,11 @@ export default Ember.Controller.extend({
 
 
       filteredTransactions.forEach(function (transaction) {
-
-
         let data = {time: '', label: '', value: 0, type: 'money'};
-        let updated = false;
-
-
         ret.forEach(function (alreadyComputedData) {
           if (moment(alreadyComputedData.time).format("YYYY-MM") === moment(transaction.get('date')).format("YYYY-MM") && alreadyComputedData.label === transaction.get('payment_mean.name')) {
             data = alreadyComputedData;
             data['value'] += (transaction.get('amount_cents') / 100);
-            updated = true;
-
           }
         });
       });
@@ -95,9 +86,53 @@ export default Ember.Controller.extend({
 
       });
       this.set('transactionChartData', ret);
-      return ret;
+    },
+
+    computeReport() {
+      "use strict";
+
+      if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
+        return;
+      }
+      this.send('computeTransactionChartData');
+      this.send('computeCategoryData');
+    },
+
+    computeCategoryData() {
+      "use strict";
+
+      let _this = this;
+
+      let incomes = [];
+      let expenses = [];
+
+      this.get('categories').forEach(function (category) {
+        let filteredTransactions = category.get('transactions').filter(function (item) {
+          let itemDate = moment(item.get('date'));
+          return itemDate.isSameOrAfter(_this.get('from')) && itemDate.isSameOrBefore(_this.get('to'));
+        });
+
+        let currentCategoryIncomes = {label: category.get('name'), value: 0, type: 'money'};
+        let currentCategoryExpenses = {label: category.get('name'), value: 0, type: 'money'};
+
+        filteredTransactions.forEach(function (transaction) {
+          if (transaction.get('amount_cents') < 0) {
+            currentCategoryExpenses['value'] += -1*(transaction.get('amount_cents') / 100);
+          } else {
+            currentCategoryIncomes['value'] += (transaction.get('amount_cents') / 100);
+          }
+        });
+
+        incomes.push(currentCategoryIncomes);
+        expenses.push(currentCategoryExpenses);
 
 
+      });
+      console.log(expenses);
+      console.log(incomes);
+
+      this.set('incomeByCategoryData', incomes);
+      this.set('expenseByCategoryData', expenses);
     }
   }
 

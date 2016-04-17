@@ -30,16 +30,59 @@
     </div>
 
 
+  {{#if transactionChartData}}
+      <div class="row">
+          <div class="col-sm-12 col-md-12">
+              <div class="block-flat">
+                  <div class="header">
+                      <h3>Monthly amount by payment mean</h3>
+                  </div>
+                  <div class="content chart-container">
+                    {{time-series-chart
+                    barData=transactionChartData
+                    selectedInterval='M'
+                    selectedSeedColor='rgb(60,110,80)'
+                    }}
+                  </div>
+              </div>
+          </div>
+      </div>
+  {{/if}}
+
     <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="block-flat chart-container">
-              {{time-series-chart
-              barData=transactionChartData
-              selectedInterval='M'
-              selectedSeedColor='rgb(60,110,80)'
-              }}
-            </div>
-        </div>
+      {{#if expenseByCategoryData}}
+          <div class="col-sm-12 col-md-6">
+              <div class="block-flat">
+                  <div class="header">
+                      <h3>Expenses by category</h3>
+                  </div>
+                  <div class="content chart-container">
+                    {{pie-chart
+                    selectedSeedColor='rgb(235,35,35)'
+                    data=expenseByCategoryData
+                    }}
+
+                  </div>
+              </div>
+
+          </div>
+      {{/if}}
+      {{#if incomeByCategoryData}}
+          <div class="col-sm-12 col-md-6">
+              <div class="block-flat">
+                  <div class="header">
+                      <h3>Income by category</h3>
+                  </div>
+                  <div class="content chart-container">
+                    {{pie-chart
+                    selectedSeedColor='rgb(60,110,80)'
+                    data=incomeByCategoryData
+                    }}
+
+                  </div>
+              </div>
+          </div>
+      {{/if}}
     </div>
 
   {{outlet}}
