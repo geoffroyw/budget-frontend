@@ -128,8 +128,6 @@ export default Ember.Controller.extend({
 
 
       });
-      console.log(expenses);
-      console.log(incomes);
 
       this.set('incomeByCategoryData', incomes);
       this.set('expenseByCategoryData', expenses);
