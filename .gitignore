@@ -18,3 +18,5 @@ testem.log
 
 .idea
 .DS_STORE
+
+.env

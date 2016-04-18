@@ -40,7 +40,11 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+
+* `ember deploy production` 
+* `ember deploy:list production`   
+* `ember deploy:activate production --revision a_revision_from_the_list`  
+
 
 ## Further Reading / Useful Links
 
