@@ -8,11 +8,11 @@
                 <div class="content">
                     <form {{action 'computeReport' on='submit'}} class="form-horizontal">
                         <div class="form-group {{if dateInvalidMessage 'has-error'  ''}}">
-                            <label for="date" class="col-sm-1 control-label">Date From</label>
+                            <label for="from" class="col-sm-1 control-label">Date From</label>
                             <div class="col-sm-2">
                               {{bootstrap-datepicker value=from class='form-control'}}
                             </div>
-                            <label for="date" class="col-sm-1 control-label">Date To</label>
+                            <label for="to" class="col-sm-1 control-label">Date To</label>
                             <div class="col-sm-2">
                               {{bootstrap-datepicker value=to class='form-control'}}
                             </div>
@@ -30,9 +30,9 @@
     </div>
 
 
-  {{#if transactionChartData}}
+
       <div class="row">
-          <div class="col-sm-12 col-md-12">
+          <div class="col-sm-12 col-md-10">
               <div class="block-flat">
                   <div class="header">
                       <h3>Monthly amount by payment mean</h3>
@@ -46,8 +46,31 @@
                   </div>
               </div>
           </div>
+          <div class="col-sm-12 col-md-2">
+              <div class="block-flat">
+                  <div class="header">
+                      <h3>Filtering options</h3>
+                  </div>
+                  <div class="content">
+                      <h5>Payment Mean</h5>
+                      <ul class="list-unstyled">
+                        {{#each paymentMeans as |paymentMean|}}
+                            <li>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               checked="checked" {{action "updateSelectedPaymentMeans" paymentMean on="change"}}/>
+                                        {{paymentMean.name}}
+                                    </label>
+                                </div>
+                            </li>
+                        {{/each}}
+                      </ul>
+                  </div>
+              </div>
+          </div>
       </div>
-  {{/if}}
+  
 
     <div class="row">
       {{#if expenseByCategoryData}}

@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
 
   from: moment().subtract(1, 'year').toDate(),
   to: new Date(),
+  selectedPaymentMeans: [],
 
   dateInvalidMessage: Ember.computed('from', 'to', function () {
     if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
@@ -17,6 +18,18 @@ export default Ember.Controller.extend({
     }
     return '';
   }),
+
+  paymentMeansObserver: Ember.observer('paymentMeans', function () {
+    "use strict";
+    console.log('observer');
+    let selectedPaymentMeans = [];
+    this.get('paymentMeans').forEach(function(e) {
+      selectedPaymentMeans.pushObject(e);
+    });
+
+    this.set('selectedPaymentMeans', selectedPaymentMeans);
+  }),
+
 
   lineData: null,
 
@@ -37,7 +50,7 @@ export default Ember.Controller.extend({
 
       let ret = [];
 
-      this.get('paymentMeans').forEach(function (paymentMean) {
+      this.get('selectedPaymentMeans').forEach(function (paymentMean) {
         for (let m = moment(_this.get('from')).startOf('month'); m.isSameOrBefore(moment(_this.get('to')).startOf('month')); m.add(1, 'months')) {
 
           let day = m.startOf('month').format('DD');
@@ -90,7 +103,6 @@ export default Ember.Controller.extend({
 
     computeReport() {
       "use strict";
-
       if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
         return;
       }
@@ -117,7 +129,7 @@ export default Ember.Controller.extend({
 
         filteredTransactions.forEach(function (transaction) {
           if (transaction.get('amount_cents') < 0) {
-            currentCategoryExpenses['value'] += -1*(transaction.get('amount_cents') / 100);
+            currentCategoryExpenses['value'] += -1 * (transaction.get('amount_cents') / 100);
           } else {
             currentCategoryIncomes['value'] += (transaction.get('amount_cents') / 100);
           }
@@ -131,7 +143,23 @@ export default Ember.Controller.extend({
 
       this.set('incomeByCategoryData', incomes);
       this.set('expenseByCategoryData', expenses);
+    },
+
+
+    updateSelectedPaymentMeans(paymentMean) {
+      "use strict";
+      console.log(this.get('selectedPaymentMeans'));
+      if (this.get('selectedPaymentMeans').contains(paymentMean)) {
+        console.log('remove');
+        this.get('selectedPaymentMeans').removeObject(paymentMean);
+      } else {
+        this.get('selectedPaymentMeans').pushObject(paymentMean);
+      }
+      console.log(this.get('paymentMeans.length'));
+
+      this.send('computeReport');
     }
   }
+
 
 });
