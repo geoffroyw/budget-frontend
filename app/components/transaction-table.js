@@ -15,6 +15,11 @@ export default Ember.Component.extend({
     editTransaction(transaction) {
       "use strict";
       this.sendAction('editTransaction', transaction);
+    },
+
+    duplicateTransaction(transaction) {
+      "use strict";
+      this.sendAction('duplicateTransaction', transaction);
     }
   }
 });

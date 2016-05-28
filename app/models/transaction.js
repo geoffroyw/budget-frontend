@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import Copyable from 'ember-cli-copyable';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Copyable, {
   amount_cents: DS.attr('number', {defaultValue: 0}),
   currency: DS.attr('string'),
   settlement_amount_cents: DS.attr('number', {defaultValue: 0}),

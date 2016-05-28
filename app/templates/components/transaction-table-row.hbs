@@ -26,6 +26,7 @@
   {{input type='checkbox' checked=model.is_confirmed}}
 </td>
 <td class="col-md-1">
-    <button class="btn btn-primary btn-xs" {{action 'edit'}}><i class="glyphicon glyphicon-edit"></i></button>
+    <button class="btn btn-primary btn-xs" {{action 'edit'}} title="Edit transaction"><i class="glyphicon glyphicon-edit"></i></button>
+    <button class="btn btn-primary btn-xs" {{action 'duplicate'}} title="Duplicate transaction"><i class="glyphicon glyphicon-copy"></i></button>
 </td>
 {{yield}}

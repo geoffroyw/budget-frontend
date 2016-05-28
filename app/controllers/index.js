@@ -60,6 +60,15 @@ export default Ember.Controller.extend({
         bankAccount.rollbackAttributes();
       });
 
+    },
+
+    duplicateTransaction(transaction) {
+      "use strict";
+      let _this = this;
+      transaction.copy({date: new Date()}).then(function(newTransaction) {
+        _this.set('selectedTransaction', newTransaction);
+        _this.set('showTransactionForm', true);
+      });
     }
   }
 });

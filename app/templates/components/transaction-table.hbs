@@ -16,7 +16,8 @@
         {{#each transactions as |transaction|}}
             {{transaction-table-row
             model=transaction
-            editTransaction='editTransaction'}}
+            editTransaction='editTransaction'
+            duplicateTransaction='duplicateTransaction'}}
         {{/each}}
         </tbody>
     </table>
