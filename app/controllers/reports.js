@@ -10,7 +10,15 @@ export default Ember.Controller.extend({
 
   from: moment().subtract(1, 'year').toDate(),
   to: new Date(),
-  selectedPaymentMeans: [],
+  selectablePaymentMeans: Ember.computed('paymentMeans', function () {
+    "use strict";
+    return this.get('paymentMeans').map(function (item) {
+      return Ember.ObjectProxy.create({
+        content: item,
+        selected: true
+      });
+    });
+  }),
 
   dateInvalidMessage: Ember.computed('from', 'to', function () {
     if (moment(this.get('from')).isAfter(moment(this.get('to')))) {
@@ -19,15 +27,11 @@ export default Ember.Controller.extend({
     return '';
   }),
 
-  paymentMeansObserver: Ember.observer('paymentMeans', function () {
+  onlyOnePaymentMeanSelected: Ember.computed('selectablePaymentMeans.@each.selected', function () {
     "use strict";
-    console.log('observer');
-    let selectedPaymentMeans = [];
-    this.get('paymentMeans').forEach(function(e) {
-      selectedPaymentMeans.pushObject(e);
-    });
-
-    this.set('selectedPaymentMeans', selectedPaymentMeans);
+    return this.get('selectablePaymentMeans').filter(function (item) {
+        return item.get('selected');
+      }).length === 1;
   }),
 
 
@@ -50,7 +54,10 @@ export default Ember.Controller.extend({
 
       let ret = [];
 
-      this.get('selectedPaymentMeans').forEach(function (paymentMean) {
+      this.get('selectablePaymentMeans').filter(function (item) {
+        "use strict";
+        return item.get('selected');
+      }).forEach(function (paymentMean) {
         for (let m = moment(_this.get('from')).startOf('month'); m.isSameOrBefore(moment(_this.get('to')).startOf('month')); m.add(1, 'months')) {
 
           let day = m.startOf('month').format('DD');
@@ -112,7 +119,6 @@ export default Ember.Controller.extend({
 
     computeCategoryData() {
       "use strict";
-
       let _this = this;
 
       let incomes = [];
@@ -148,15 +154,7 @@ export default Ember.Controller.extend({
 
     updateSelectedPaymentMeans(paymentMean) {
       "use strict";
-      console.log(this.get('selectedPaymentMeans'));
-      if (this.get('selectedPaymentMeans').contains(paymentMean)) {
-        console.log('remove');
-        this.get('selectedPaymentMeans').removeObject(paymentMean);
-      } else {
-        this.get('selectedPaymentMeans').pushObject(paymentMean);
-      }
-      console.log(this.get('paymentMeans.length'));
-
+      paymentMean.toggleProperty('selected');
       this.send('computeReport');
     }
   }

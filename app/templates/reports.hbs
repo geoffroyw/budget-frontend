@@ -30,47 +30,48 @@
     </div>
 
 
+    <div class="row">
+        <div class="col-sm-12 col-md-10">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Monthly amount by payment mean</h3>
+                </div>
+                <div class="content chart-container">
+                  {{time-series-chart
+                  barData=transactionChartData
+                  selectedInterval='M'
+                  selectedSeedColor='rgb(60,110,80)'
+                  }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Filtering options</h3>
+                </div>
+                <div class="content">
+                    <h5>Payment Mean</h5>
+                    <ul class="list-unstyled">
+                      {{#each selectablePaymentMeans as |paymentMean|}}
+                          <li>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox"
+                                             checked={{paymentMean.selected}}
+                                                     disabled={{and onlyOnePaymentMeanSelected paymentMean.selected}}
+                                                     {{action "updateSelectedPaymentMeans" paymentMean on="change"}}/>
+                                    {{paymentMean.name}}
+                                  </label>
+                              </div>
+                          </li>
+                      {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      <div class="row">
-          <div class="col-sm-12 col-md-10">
-              <div class="block-flat">
-                  <div class="header">
-                      <h3>Monthly amount by payment mean</h3>
-                  </div>
-                  <div class="content chart-container">
-                    {{time-series-chart
-                    barData=transactionChartData
-                    selectedInterval='M'
-                    selectedSeedColor='rgb(60,110,80)'
-                    }}
-                  </div>
-              </div>
-          </div>
-          <div class="col-sm-12 col-md-2">
-              <div class="block-flat">
-                  <div class="header">
-                      <h3>Filtering options</h3>
-                  </div>
-                  <div class="content">
-                      <h5>Payment Mean</h5>
-                      <ul class="list-unstyled">
-                        {{#each paymentMeans as |paymentMean|}}
-                            <li>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"
-                                               checked="checked" {{action "updateSelectedPaymentMeans" paymentMean on="change"}}/>
-                                        {{paymentMean.name}}
-                                    </label>
-                                </div>
-                            </li>
-                        {{/each}}
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
-  
 
     <div class="row">
       {{#if expenseByCategoryData}}
