@@ -10,7 +10,7 @@ export default DS.Model.extend({
   bank_account: DS.belongsTo('bank-account'),
   is_active: DS.attr('boolean', {defaultValue: true}),
   last_run_on: DS.attr('date'),
-  categories: DS.hasMany('Category'),
+  category: DS.belongsTo('Category'),
 
   amount: Ember.computed('amount_cents', {
     get() {

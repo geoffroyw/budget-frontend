@@ -13,7 +13,8 @@ export default DS.Model.extend(Copyable, {
   payment_mean: DS.belongsTo('payment-mean'),
   bank_account: DS.belongsTo('bank-account'),
   is_confirmed: DS.attr('boolean', {defaultValue: false}),
-  categories: DS.hasMany('Category'),
+  category: DS.belongsTo('Category'),
+  categories: Ember.computed.alias('category'),
 
 
   isIncome: Ember.computed.gte('amount_cents', 0),

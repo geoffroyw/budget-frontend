@@ -4,7 +4,7 @@
 <td>{{format-amount model.amount_cents model.currency}}</td>
 <td>{{model.payment_mean.name}}</td>
 <td>{{model.bank_account.name}}</td>
-<td>{{category-names categories=model.categories}}</td>
+<td>{{model.category.name}}</td>
 <td>{{input type='checkbox' checked=model.is_active}}</td>
 <td>
     <button class="btn btn-primary btn-xs" {{action 'edit'}}><i class="glyphicon glyphicon-edit"></i></button>

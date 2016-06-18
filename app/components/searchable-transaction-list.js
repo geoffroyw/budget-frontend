@@ -23,11 +23,7 @@ export default Ember.Component.extend({
     let regex = new RegExp(filter, 'i');
 
     return this.get('sortedTransactions').filter(function (item) {
-      let categoryMatch = false;
-      item.get('categories').forEach(function (category) {
-        categoryMatch = categoryMatch || regex.test(category.get('name'));
-      });
-
+      let categoryMatch = regex.test(item.get('category.name'));
       return categoryMatch || regex.test(item.get('description'));
     });
 

@@ -1,17 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  selectedCategoriesName: [],
   currencyService: Ember.inject.service('currency'),
-
-  setSelectedCategories: Ember.observer('model.categories', function () {
-    "use strict";
-    let selectedCategories = this.get('model.categories').map(function (category) {
-      return {name: category.get('name')};
-    });
-
-    this.set('selectedCategoriesName', selectedCategories);
-  }).on('init'),
 
 
   title: Ember.computed('model.id', function () {
@@ -23,22 +13,14 @@ export default Ember.Component.extend({
     }
   }),
 
-  allCategoriesName: Ember.computed('categories', function () {
-    "use strict";
-    if (this.get('categories') === undefined) {
-      return;
-    }
-    return this.get('categories').map(function (e) {
-      return {name: e.get('name')};
-    });
-  }),
-
   actions: {
-    newCategory(category_name) {
+    newCategory(name) {
       "use strict";
-      this.sendAction('createNewCategory', category_name);
+      this.sendAction('createNewCategory', name);
 
-      this.get('selectedCategoriesName').addObject({name: category_name});
+      let category_models_for_selected_name = this.get('categories').filterBy('name', name);
+      
+      this.set('model.category', category_models_for_selected_name[0]);
 
     },
 
@@ -61,20 +43,7 @@ export default Ember.Component.extend({
       "use strict";
       let _this = this;
 
-      let selectedCategories = [];
-
       const flashMessages = Ember.get(this, 'flashMessages');
-
-      this.get('selectedCategoriesName').forEach(function (selected_category) {
-        let category_models_for_selected_name = _this.get('categories').filterBy('name', selected_category.name);
-        selectedCategories.pushObject(category_models_for_selected_name[0]);
-      });
-
-      this.get('model.categories').clear();
-
-      selectedCategories.forEach(function (category) {
-        _this.get('model.categories').pushObject(category);
-      });
 
 
       this.get('model').save().then(function () {
