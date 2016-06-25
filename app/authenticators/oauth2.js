@@ -1,7 +1,8 @@
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
+import ENV from 'budget-frontend/config/environment';
 
 export default OAuth2PasswordGrant.extend({
-  serverTokenEndpoint: 'http://localhost:8080/oauth/token',
+  serverTokenEndpoint: ENV.APP.host + '/oauth/token',
   clientId: 'webApplication'
 
 });
