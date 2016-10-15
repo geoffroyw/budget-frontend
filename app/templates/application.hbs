@@ -1,28 +1,24 @@
 {{#if session.isAuthenticated}}
     <div id="cl-wrapper">
-        <div class="cl-sidebar">
-            {{render 'sidebar'}}
-        </div>
-
         <div class="container-fluid" id="pcont">
-
-            <div id="head-nav" class="navbar navbar-default">
-                {{ render 'header'}}
+            <div id="head-nav" class="topbar navbar navbar-default">
+              {{ render 'header'}}
             </div>
 
 
-            {{#each flashMessages.arrangedQueue as |flash|}}
-                <div class="flash-messages">
-                    {{flatdream-flash flash=flash}}
-                </div>
-            {{/each}}
+          {{#each flashMessages.arrangedQueue as |flash|}}
+              <div class="flash-messages">
+                {{flatdream-flash flash=flash}}
+              </div>
+          {{/each}}
 
-
-            {{outlet}}
+            <div class="cl-mcont">
+              {{outlet}}
+            </div>
         </div>
     </div>
 {{else}}
-    {{outlet}}
+  {{outlet}}
 {{/if}}
 
 {{outlet 'modal'}}
