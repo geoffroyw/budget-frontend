@@ -15,9 +15,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   subMenuStyle: Ember.computed('isSubMenuOpen', function () {
     "use strict";
     if (this.get('isSubMenuOpen')) {
-      return new Ember.Handlebars.SafeString('display: block');
+      return new Ember.String.htmlSafe('display: block');
     }
-    return new Ember.Handlebars.SafeString('');
+    return new Ember.String.htmlSafe('');
   }),
 
 
