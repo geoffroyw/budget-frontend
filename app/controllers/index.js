@@ -3,21 +3,27 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   showTransactionForm: false,
   currencyService: Ember.inject.service('currency'),
+  selectedBankAccount: undefined,
 
   transactionSorting: ['date:desc', 'id:desc'],
+  bankAccountSorting: ['name'],
 
   newAccount: {name: '', currency: ''},
 
-  transactions: Ember.computed.alias('model.transactions'),
-  bankAccounts: Ember.computed.alias('model.bankAccounts'),
+  transactions: Ember.computed.sort('model.transactions', 'transactionSorting'),
+  bankAccounts: Ember.computed.sort('model.bankAccounts', 'bankAccountSorting'),
   paymentMeans: Ember.computed.alias('model.paymentMeans'),
   categories: Ember.computed.alias('model.categories'),
 
   hasBankAccounts: Ember.computed.notEmpty('bankAccounts'),
 
-  sortedContent: Ember.computed.sort('transactions', 'transactionSorting'),
-
   actions: {
+
+    showTransaction(bankAccount) {
+      "use strict";
+      this.set('selectedBankAccount', bankAccount);
+    },
+
     openTransactionFormModal() {
       "use strict";
       let selectedTransaction = this.store.createRecord('transaction', {date: new Date()});
