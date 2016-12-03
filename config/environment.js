@@ -44,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.host = 'https://budget-backend.herokuapp.com';
+
   }
 
   return ENV;
